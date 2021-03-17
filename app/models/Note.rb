@@ -1,16 +1,14 @@
-require 'uuidtools'
+require "date"
 
 class Note
-    include Mongoid::Document
-    include Mongoid::Timestamps::Created
-    store_in collection: "notes", database: "NotesWSD2021"
+    attr_accessor :title, :text, :date
 
-    field :_id, type: String, default: ->{ SecureRandom.uuid.to_s} 
-    field :title, type: String
-    field :text, type: String
-    field :image, type: String, default: ->{ "" }
+    def initialize(title, text, date)
+        @title = title
+        @text = text
+        @date = date
+        
+        images = [] 
 
-    validates_presence_of :_id, :title, :text
-    validates_uniqueness_of :_id
-
+    end 
 end
