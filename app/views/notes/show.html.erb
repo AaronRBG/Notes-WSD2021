@@ -1,0 +1,13 @@
+<!-- Mostrar las notas, dar la opcion de eliminar o editar -->
+<h1><%= @note.title %></h1>
+
+<p><%= @note.text%></p>
+<p><%= @note.date%></p>
+
+
+<ul>
+  <li><%= link_to "Edit", edit_note_path(@note) %></li> <!-- Poner el path al metodo edit note-->
+  <li><%= link_to "Destroy", note_path(@note),
+                  method: :delete,
+                  data: { confirm: "Are you sure you want to delete this note?" } %></li>
+</ul>
