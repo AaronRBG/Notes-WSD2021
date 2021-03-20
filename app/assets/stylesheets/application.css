@@ -5,6 +5,13 @@
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
+ *
+ *
+ *
+ *                     PUT THE RELATIVE PATH TO THE .CSS
+ *
+ *
+ *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
@@ -13,3 +20,40 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    background-color: rgba(252, 252, 252, 0.973);       
+    background-size: 100%;        
+    color: rgb(80, 21, 21);                
+    /*text-align: center;*/     
+}
+
+.box {
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    padding: 25px;
+    background-color: rgb(245, 185, 57);
+    border: rgb(245, 185, 57);
+  }
+
+
+a {
+    text-decoration: none;      
+    font-family: Arial;         
+    font-size: 20px;           
+    font-weight: bold;          
+}
+
+a:link {             
+    color: rgb(60, 42, 218);
+}
+
+a:hover {
+    color:purple;
+}
+
+a:visited {
+    color: clear;
+}
+
