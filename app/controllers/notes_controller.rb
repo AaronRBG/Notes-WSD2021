@@ -5,6 +5,10 @@ class NotesController < ApplicationController
         @note = Note.all
     end
 
+    def show
+      @note = Note.find(params[:id])
+    end 
+
     def new
         @note = Note.new
     end
@@ -13,9 +17,8 @@ class NotesController < ApplicationController
         @note = Note.new(Note_params)
         if @note.save
             redirect_to root_path
-          else
+        else
             render :new
-          end
         end
     end
 
@@ -35,15 +38,15 @@ class NotesController < ApplicationController
         @note = Note.find(params[:id])
 
         if @note.update(Note_params)
-          #choos what to do when finish editing
+          redirect_to @note
         else
           render :edit
         end
-      end
     end
+    
 
     private
     def Note_params
-      params.require(:note).permit(:title, :text)
+      params.require(:note).permit(:title, :text, :date)
     end
 end
