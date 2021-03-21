@@ -1,4 +1,6 @@
-<!-- Mostrar la pagina de edición de notas -->
-<h1>Edit Note</h1>
+<h1>Editing Note</h1>
 
-<%= render "form", note: @note %>
+<%= render 'form', note: @note %>
+
+<%= link_to 'Show', @note %> |
+<%= link_to 'Back', root_path %>

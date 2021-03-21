@@ -1,12 +1,33 @@
-<!-- Mostrar listado de las notas. al clickar una aparece (show.html)-->
+<p id="notice"><%= notice %></p>
+
 <h1>Notes</h1>
 
-<ul>
-  <% @notes.each do |note| %>
-    <li>
-      <%= link_to note.title, note %>
-    </li>
-  <% end %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Text</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<!--%= link_to "New Note", new_note_path %> 
+  <tbody>
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note._id %></td>
+        <td><%= note.title %></td>
+        <td><%= note.text %></td>
+        <td><%= note.image %></td>
+        <td><%= link_to 'Show', note_path(note, :_id => note._id) %></td>
+        <td><%= link_to 'Edit', edit_note_path(note), :params => {:_id => note._id} %></td>
+        <td><%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Note', new_note_path %>
