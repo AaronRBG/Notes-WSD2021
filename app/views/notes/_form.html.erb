@@ -1,27 +1,26 @@
-<%= form_with model: note do |form| %>
+<%= form_with(model: note) do |form| %>
 
-  <div>
-    <%= form.label :title %><br>
+  <div class="field">
+    <%= form.label :_id %>
+    <%= form.text_field :_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
     <%= form.text_field :title %>
-    
   </div>
 
-  <div>
-    <%= form.label :text %><br>
-    <%= form.text_area :text %><br>
-    
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_field :text %>
   </div>
 
-
-  <div>
-    <%= form.label :date %><br>
-    <%= form.text_field :date %>
-    
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
   </div>
 
-  <!-- Mostrar la lista de imagenes -->
-
-  <div>
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

@@ -1,52 +1,52 @@
 class NotesController < ApplicationController
-    
+  
     def index
-        #will need to filter by user id
         @notes = Note.all
     end
 
     def show
-      @note = Note.find(params[:id])
-    end 
-
+        @note = Note.find(params[:_id])
+    end
+  
     def new
-        @note = Note.new
+      @note = Note.new
     end
-    
+  
     def create
-        @note = Note.new(Note_params)
+      @note = Note.new(note_params)
+  
+      respond_to do |format|
         if @note.save
-            redirect_to root_path
+          format.html { redirect_to action: "index", notice: "Note was successfully created." }
         else
-            render :new
+          format.html { redirect_to action: "index", notice: "Note was not created." }
         end
+      end
     end
-
-    def destroy
-        @note = Note.find(params[:id])
-        @note.destroy
-        
-        redirect_to root_path
-    end
-
-    def edit
-        #for secure method check if it as user permision to modify
-        @note = Note.find(params[:id])
-    end
-
+  
     def update
-        @note = Note.find(params[:id])
-
-        if @note.update(Note_params)
-          redirect_to @note
+      respond_to do |format|
+        if @note.update(note_params)
+            format.html { redirect_to action: "index", notice: "Note was successfully created." }
         else
-          render :edit
+          format.html { redirect_to action: "index", notice: "Note was not created." }
+        end
+      end
+    end
+  
+    def destroy
+        @note = Note.find(params[:_id])
+        @note.destroy
+        respond_to do |format|
+            format.html { redirect_to action: "index", notice: "Note was successfully created." }
         end
     end
-    
 
     private
-    def Note_params
-      params.require(:note).permit(:title, :text, :date)
-    end
-end
+        # Only allow a list of trusted parameters through.
+        def note_params
+            params.require(:note).permit(:_id, :title, :text, :image)
+        end
+  
+  end
+  
