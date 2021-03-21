@@ -2,7 +2,7 @@ class NotesController < ApplicationController
     
     def index
         #will need to filter by user id
-        @note = Note.all
+        @notes = Note.all
     end
 
     def show

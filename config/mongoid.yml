@@ -6,7 +6,8 @@ development:
         -  cluster0-shard-00-01.p223e.mongodb.net:27017 
       options:
         user: 'wsd2021'
-        password: 'wsd2021'     
+        password: 'wsd2021'    
+        auth_source: admin 
         ssl: true
         ssl_verify: false
 

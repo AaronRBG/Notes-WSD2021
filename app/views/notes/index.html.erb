@@ -2,11 +2,11 @@
 <h1>Notes</h1>
 
 <ul>
-  <% @note.each do |note| %>
+  <% @notes.each do |note| %>
     <li>
       <%= link_to note.title, note %>
     </li>
   <% end %>
 </ul>
 
-<!--%= link_to "New Note", new_note_path %>  Poner el path al metodo new note -->
+<!--%= link_to "New Note", new_note_path %> 
