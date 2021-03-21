@@ -1,0 +1,27 @@
+<%= form_with model: note do |form| %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    
+  </div>
+
+  <div>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %><br>
+    
+  </div>
+
+
+  <div>
+    <%= form.label :date %><br>
+    <%= form.text_field :date %>
+    
+  </div>
+
+  <!-- Mostrar la lista de imagenes -->
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
