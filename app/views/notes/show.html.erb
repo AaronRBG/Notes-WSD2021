@@ -1,13 +1,27 @@
-<!-- Mostrar las notas, dar la opcion de eliminar o editar -->
-<div class = "box">
-<h1><%= @note.title %></h1>
-<p><%= @note.text%></p>
-<p><%= @note.date%></p>
+<p id="notice"><%= notice %></p>
+<div class="contenido">
+<div class = 'box'>
+<!--p>
+  <strong>Id:</strong>
+  <strong><%= @note._id %></strong>
+</p-->
+
+<h6>
+  <!--strong>Title:</strong-->
+  <strong><%= @note.title %></strong>
+</h6>
+<br>
+<p>
+  <!--strong>Text:</strong-->
+  <%= @note.text %>
+</p>
+
+<p>
+  <!--strong>Image:</strong-->
+  <%= @note.image %>
+</p>
 </div>
 
-<ul>
-  <li><%= link_to "Edit", edit_note_path(@note) %></li> 
-  <li><%= link_to "Destroy", note_path(@note),
-                  method: :delete,
-                  data: { confirm: "Are you sure you want to delete this note?" } %></li>
-</ul>
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', root_path %>
+</div>
