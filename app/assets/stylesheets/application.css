@@ -5,6 +5,13 @@
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
+ *
+ *
+ *
+ *                     PUT THE RELATIVE PATH TO THE .CSS
+ *
+ *
+ *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
@@ -13,3 +20,180 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    background-color: rgba(255, 255, 255, 0.973);       
+    background-size: 100%;        
+    color: rgb(0, 0, 0);    
+    font-size: 14px; 
+    font-family: Arial;           
+    /*text-align: center;*/     
+}
+
+.box {
+    box-shadow: 
+
+              0 0 0 0.03em #2c2c2c,
+              0 0 0 0.05em #3d3d3d,
+              0 0 0 0.08em #555454,
+              0 0 0 0.12em #5c5c5c,
+              0 0 0 0.18em #7a7a7a,
+              0 0 0 0.24em #9c9999,
+              0 0 0 0.29em #c9c5c5,
+              0 0 0 0.34em #e4e4e4;
+    width: 300px;
+    height: 400px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background: linear-gradient(rgb(250, 210, 124),rgb(255, 178, 11));
+    border:black;
+  }
+  .box2 {
+    width: 500px;
+    height: 300px;
+    margin: 10px;
+    padding: 25px;
+    background-color: rgb(245, 185, 57);
+    border: rgb(245, 185, 57);
+  }
+
+a {
+    text-decoration: none;     
+    /*background-color: rgb(144, 235, 235);*/
+    font-family: Arial;         
+    font-size: 15px;           
+    font-weight: bold;          
+}
+
+a:link {             
+    color: purple;
+}
+
+a:hover {
+    color:purple;
+}
+
+a:visited {
+    color: clear;
+}
+h1 {
+  text-shadow: 3px 3px 4px rgb(75, 74, 74);
+    margin-left: 50px;
+    color: #0caa95;
+    font-weight:bold;
+    flood-color: black;
+    font-size: 35px;
+    font-family: Arial;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: #3c1b66;
+    font-weight: normal;
+    font-size: 35px;
+    font-family: Arial;
+    text-transform: uppercase;
+  }
+  h3 {
+    text-shadow: 3px 3px 4px rgb(75, 74, 74);
+    text-align: center;
+    color: #0caa95;
+    font-weight:bold;
+    flood-color: black;
+    font-size: 35px;
+    font-family: Arial;
+    text-transform: uppercase;
+  }
+  h4 {
+    color: #4f4866;
+    font-weight: normal;
+    font-size: 25px;
+    font-family: Arial;
+    text-transform: lowercase;
+  }
+  h5 {
+    margin:10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial;
+    
+  }
+  h6 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Arial;
+    
+  }
+  
+  .enlace {
+    display:inline;
+    border:0;
+    padding:0;
+    margin:0;
+    text-decoration:underline;
+    background:none;
+    color:#000088;
+    font-family: arial, sans-serif;
+    font-size: 1em;
+    line-height:1em;
+  }
+  
+  .enlace:hover {
+    text-decoration:none;
+    color:#0000cc;
+    cursor:pointer;
+  }
+  
+  .myForm {
+   /* margin-right: 40px;
+    margin-left: 40px;*/
+    display: grid;
+    grid-template-columns: [labels] auto [controls] 1fr;
+    grid-auto-flow: row;
+    grid-gap: 3em;
+    background:teal;
+    padding: 1.2em;
+    font-size: 16px;
+    border-radius: 20px;
+    font-family: Arial;
+    font-weight: bold;  
+    text-shadow: white;
+     text-align: center;}
+  .myForm > label  {
+    grid-column: labels;
+    grid-row: auto;
+  }
+  .myForm > input,
+  .myForm > textarea{
+    grid-column: controls;
+    grid-row: auto;
+    border: none;
+    padding: 1em;
+  }
+  .myForm > button{
+    color: teal;
+    background-color: royalblue;
+    grid-column: controls;
+    grid-row: auto;
+    border: none;
+    padding: 1em;
+
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+    align-items: center;
+    border-spacing: 5px;
+  }
+
+  .th1{
+    background-color: teal;
+    color: white;
+  }
+  
+  .contenido { 
+    margin: 50px; 
+  }

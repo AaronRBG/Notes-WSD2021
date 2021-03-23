@@ -1,0 +1,41 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<h1 align:center>WSD2021 Notes Application</h1>
+<div class="contenido">
+<table align: center>
+  
+  <thead>
+    <tr>
+      <!--<th>Id</th>-->
+      <th class="th1"><h5>Note title</h5></th>
+     <th class= "th1" colspan="3"><h5>Options</h5></th>
+      <!--th>Text</th-->
+      <!--<th>Image</th>-->
+     
+    </tr>
+  </thead>
+
+  
+  <tbody>
+    <% @notes.each do |note| %>
+      <tr>
+        <!--<td><%= note._id %></td> -->
+        <td><%= note.title %></td>
+        <!--td><%= note.text %></td-->
+        <!-- <td><%= note.image %></td> -->
+        <td> <%= link_to 'Show', note_path(note, :_id => note._id) %> </td>
+        <td><%= link_to 'Edit', edit_note_path(note), :params => {:_id => note._id} %></td>
+        <td><%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>
+
+<br>
+
+<%= link_to 'New Note', new_note_path %>
+</div>
+

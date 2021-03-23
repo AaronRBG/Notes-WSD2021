@@ -1,4 +1,5 @@
 require 'uuidtools'
+require 'rails/mongoid'
 
 class Note
     include Mongoid::Document

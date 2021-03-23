@@ -1,0 +1,28 @@
+<%= form_with(model: note) do |form| %>
+  
+  <div class="myForm">
+    
+    <%= form.label :_id %>
+    <%= form.text_field :_id %>
+  </div>
+
+  <div class="myForm">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="myForm">
+    <%= form.label :text %>
+    <%= form.text_field :text %>
+  </div>
+
+  <div class="myForm">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div class="myForm">
+    <%= form.submit %>
+  </div>
+  
+<% end %>
