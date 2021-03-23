@@ -9,8 +9,7 @@ class Note
     field :_id, type: String, default: ->{ SecureRandom.uuid.to_s} 
     field :title, type: String
     field :text, type: String
-    
-    has_many_attached :image
+    field :image, type: String, default: ->{ "" }
 
     validates_presence_of :_id, :title, :text
     validates_uniqueness_of :_id
