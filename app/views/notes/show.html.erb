@@ -1,24 +1,27 @@
 <p id="notice"><%= notice %></p>
-
-<p>
+<div class="contenido">
+<div class = 'box'>
+<!--p>
   <strong>Id:</strong>
-  <%= @note._id %>
-</p>
+  <strong><%= @note._id %></strong>
+</p-->
 
+<h6>
+  <!--strong>Title:</strong-->
+  <strong><%= @note.title %></strong>
+</h6>
+<br>
 <p>
-  <strong>Title:</strong>
-  <%= @note.title %>
-</p>
-
-<p>
-  <strong>Text:</strong>
+  <!--strong>Text:</strong-->
   <%= @note.text %>
 </p>
 
 <p>
-  <strong>Image:</strong>
+  <!--strong>Image:</strong-->
   <%= @note.image %>
 </p>
+</div>
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
 <%= link_to 'Back', root_path %>
+</div>
