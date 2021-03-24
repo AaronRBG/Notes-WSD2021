@@ -1,6 +1,6 @@
 <%= form_with(model: note) do |form| %>
   
-  <div class="myForm">  
+  <div class="myForm" style="display: none;">  
     <%= form.label :_id %>
     <%= form.text_field :_id %>
   </div>
@@ -18,7 +18,7 @@
  
   <div class="myForm">
      <%= form.label :image %>
-      <%= form.file_field :image %>
+      <%= form.text_field :image %>
   </div>
 
 
