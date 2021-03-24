@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository contains the project related to the subject Web Systems Development (2020-2021) of Group 6
 
-Things you may want to cover:
+The group is formed by:
 
-* Ruby version
+* Diego Arche Claudio
 
-* System dependencies
+* María Braojos Puentenueva
 
-* Configuration
+* Elisa Jiménez Riaza
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Aarón Rodríguez-Barbero González
