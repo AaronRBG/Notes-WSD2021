@@ -11,6 +11,10 @@ class NotesController < ApplicationController
     def new
       @note = Note.new
     end
+
+    def edit
+      @note = Note.find(params[:_id])
+    end
   
     def create
       @note = Note.new(note_params)
@@ -25,8 +29,10 @@ class NotesController < ApplicationController
     end
   
     def update
+      aux = Note.new(note_params)
+      @note = Note.find(aux._id)
       respond_to do |format|
-        if @note.update(note_params)
+        if @note.update(:title => aux.title, :text => aux.text, :image => aux.image)
             format.html { redirect_to action: "index", notice: "Note was successfully created." }
         else
           format.html { redirect_to action: "index", notice: "Note was not created." }

@@ -26,7 +26,7 @@
         <!--td><%= note.text %></td-->
         <!-- <td><%= note.image %></td> -->
         <td> <%= link_to 'Show', note_path(note, :_id => note._id) %> </td>
-        <td><%= link_to 'Edit', edit_note_path(note), :params => {:_id => note._id} %></td>
+        <td><%= link_to 'Edit', edit_note_path(note, :_id => note._id) %></td>
         <td><%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
