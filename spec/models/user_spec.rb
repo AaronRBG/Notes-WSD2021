@@ -38,12 +38,12 @@ RSpec.describe User, type: :model do
     end
     it "ensures type is valid" do
       user = User.create(username: "username", name: "name", email: "email@email.com", password: "Password1", type: "type")
-      bool = (user.type == "USER" OR user.type == "ADMIN")
+      bool = (user.type == "USER") or (user.type == "ADMIN")
       expect(user.save).to eq(bool)
     end
     it "ensures email is valid" do
       user = User.create(username: "username", name: "name", email: "email", password: "Password1", type: "type")
-      bool = (user.email.include? "@" AND user.email.include? ".")
+      bool = (user.email.include? "@" and user.email.include? ".")
       expect(user.save).to eq(bool)
     end
     it "ensures password is valid" do
@@ -51,11 +51,11 @@ RSpec.describe User, type: :model do
       expect(user.password =~ /[0-9]/).not_to eq(nil)
       expect(user.password =~ /[a-z]/).not_to eq(nil)
       expect(user.password =~ /[A-Z]/).not_to eq(nil)
-      expect(user.password.Length >= 8)
+      expect(user.password.length >= 8)
     end
     it "ensures username is valid" do
       user = User.create(username: "user name", name: "name", email: "email@email.com", password: "Password1", type: "type")
-      bool = (NOT user.username.contains? " ")
+      bool = not ( user.username.include? " ")
       expect(user.save).to eq(bool)
     end
     it "creates a user when validations are passed" do

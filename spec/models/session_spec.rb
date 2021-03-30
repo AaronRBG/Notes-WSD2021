@@ -9,9 +9,17 @@ RSpec.describe Session, type: :model do
     it "ensures user exists" do
       user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
       session = Session.create(user: user.username)
-      bool = User.find(user.username)
-      expect(session.save).to eq(bool)
+      bool = false
+      begin
+        User.find(user.username)
+      rescue
+        puts "User does not exist"
+      else
+        bool = true
+      end
       expect(User.find(user.username).delete).to eq(true)
+      expect(session.save).to eq(bool)
+      expect(session.delete).to eq(true)
   end
     it "ensures _id uniqueness" do
       user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
@@ -71,7 +79,7 @@ RSpec.describe Session, type: :model do
     end
 
     it "reads a created session with a given id" do
-      expect(Note.find(@session._id)).to eq(@session)
+      expect(Session.find(@session._id)).to eq(@session)
     end
     it "deletes a created session with a given id" do
       expect(@session.delete).to eq(true)
