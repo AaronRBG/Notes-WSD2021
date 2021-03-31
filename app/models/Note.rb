@@ -13,5 +13,5 @@ class Note
 
     validates_presence_of :_id, :title, :text
     validates_uniqueness_of :_id
-
+    belongs_to :user
 end
