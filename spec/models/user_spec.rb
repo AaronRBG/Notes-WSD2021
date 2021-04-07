@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
     end
     it "ensures username is valid" do
       user = User.create(username: "user name", name: "name", email: "email@email.com", password: "Password1", type: "type")
-      bool = not ( user.username.include? " ")
+      bool = !( user.username.include? " ")
       expect(user.save).to eq(bool)
     end
     it "creates a user when validations are passed" do
