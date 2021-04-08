@@ -8,9 +8,9 @@ class Session
 
   field :_id, type: String, default: ->{ SecureRandom.uuid.to_s} 
   field :token, type: String, default: ->{ SecureRandom.uuid.to_s} 
-  field :user, type: String
 
-  validates_presence_of :_id, :token, :user
-  validates_uniqueness_of :_id, :token, :user
+  validates_presence_of :_id, :token
+  validates_uniqueness_of :_id, :token, :user_id
 
+  belongs_to :user
 end
