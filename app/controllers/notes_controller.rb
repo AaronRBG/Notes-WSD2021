@@ -1,19 +1,28 @@
 class NotesController < ApplicationController
   
     def index
-        @notes = Note.all
+      @notes = Note.all
     end
 
     def show
-        @note = Note.find(params[:_id])
+      @note = Note.find(params[:_id])
     end
   
     def new
       @note = Note.new
     end
 
+    def getShare
+      @note = Note.find(params[:_id])
+      @user = params[:userShared]
+    end
+
     def edit
       @note = Note.find(params[:_id])
+    end
+
+    def share
+      UserNote.new(@note._id, @user)
     end
   
     def create
@@ -21,6 +30,7 @@ class NotesController < ApplicationController
   
       respond_to do |format|
         if @note.save
+          UserNote.new(@note._id, params[:user])
           format.html { redirect_to action: "index", notice: "Note was successfully created." }
         else
           format.html { redirect_to action: "index", notice: "Note was not created." }
@@ -42,7 +52,9 @@ class NotesController < ApplicationController
   
     def destroy
         @note = Note.find(params[:_id])
-        @note.destroy
+        noteID = @note._id
+        if @note.destroy
+          UserNote.find(:note_id => noteID).destroy
         respond_to do |format|
             format.html { redirect_to action: "index", notice: "Note was successfully created." }
         end

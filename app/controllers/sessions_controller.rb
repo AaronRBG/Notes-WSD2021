@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     end
   
     def read
-      @session = Note.find(params[:_id])
+      @session = Session.find(params[:_id])
     end
   
     # POST /sessions or /sessions.json
@@ -15,23 +15,23 @@ class SessionsController < ApplicationController
   
       respond_to do |format|
         if @session.save
-          if(User.find(@session.user).type=="Admin")
-            format.html { redirect_to action: "users/admin", notice: "Note was successfully created." }
+          if(User.find(@session.user).type=="ADMIN")
+            format.html { redirect_to action: "users/admin", notice: "Admin login was successful." }
           else
-            format.html { redirect_to action: "users/user", notice: "Note was successfully created." }
+            format.html { redirect_to action: "users/user", notice: "User login was successful." }
           end
         else
-          format.html { redirect_to action: "index", notice: "Note was not created." }
+          format.html { redirect_to action: "index", notice: "Login was not successful." }
         end
       end
     end
   
     # DELETE /sessions/1 or /sessions/1.json
     def logout
-      @session = Note.find(params[:_id])
+      @session = Session.find(params[:_id])
       @session.destroy
       respond_to do |format|
-          format.html { redirect_to action: "index", notice: "Note was successfully created." }
+          format.html { redirect_to action: "index", notice: "Logout was successful." }
       end
     end
   
