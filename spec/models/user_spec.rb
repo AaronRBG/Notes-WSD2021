@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'validations' do
+  context '[Validations]' do
     it "ensures the presence of username" do
         user = User.create(username: "", name: "name", email: "email@email.com", password: "Password1", type: "USER")
         expect(user.save).to eq(false)
@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'read and delete' do
+  context '[Read and Delete]' do
 
     subject { @user }
     before(:all) do
@@ -74,7 +74,7 @@ RSpec.describe User, type: :model do
     end
 
     it "reads a created user with a given username" do
-      expect(Note.find(@user.username)).to eq(@user)
+      expect(User.find(@user.username)).to eq(@user)
     end
     it "deletes a created user with a given username" do
       expect(@user.delete).to eq(true)

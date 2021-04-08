@@ -7,7 +7,7 @@ RSpec.describe Session, type: :model do
         expect(session.save).to eq(false)
     end
     it "ensures user exists" do
-      user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
+      user = User.create(username: "username", name: "name", email: "email@email.com", password: "Password1", type: "USER")
       session = Session.create(user: user.username)
       bool = false
       begin
@@ -22,9 +22,9 @@ RSpec.describe Session, type: :model do
       expect(session.delete).to eq(true)
   end
     it "ensures _id uniqueness" do
-      user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
+      user = User.create(username: "username", name: "name", email: "email@email.com", password: "Password1", type: "USER")
       user.save!
-      user2 = User.create(username: "username2", name: "name", email: "email2@email.com", password: "password", type: "USER")
+      user2 = User.create(username: "username2", name: "name", email: "email2@email.com", password: "Password1", type: "USER")
       user2.save!
       session = Session.create!(user: user.username)
       session.save!
@@ -35,9 +35,9 @@ RSpec.describe Session, type: :model do
       expect(User.find(user2.username).delete).to eq(true)
     end
     it "ensures token uniqueness" do
-      user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
+      user = User.create(username: "username", name: "name", email: "email@email.com", password: "Password1", type: "USER")
       user.save!
-      user2 = User.create(username: "username2", name: "name", email: "email2@email.com", password: "password", type: "USER")
+      user2 = User.create(username: "username2", name: "name", email: "email2@email.com", password: "Password1", type: "USER")
       user2.save!
       session = Session.create!(user: user.username)
       session.save!
@@ -48,7 +48,7 @@ RSpec.describe Session, type: :model do
       expect(User.find(user2.username).delete).to eq(true)
     end
     it "ensures user uniqueness" do
-      user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
+      user = User.create(username: "username", name: "name", email: "email@email.com", password: "Password1", type: "USER")
       user.save!
       session = Session.create!(user: user.username)
       session.save!
@@ -58,7 +58,7 @@ RSpec.describe Session, type: :model do
       expect(User.find(user.username).delete).to eq(true)
     end
     it "creates a session when validations are passed" do
-      user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
+      user = User.create(username: "username", name: "name", email: "email@email.com", password: "Password1", type: "USER")
       user.save!
       session = Session.create!(user: user.username)
       expect(session.save!).to eq(true)
@@ -71,7 +71,7 @@ RSpec.describe Session, type: :model do
 
     subject { @session }
     before(:all) do
-      user = User.create(username: "username", name: "name", email: "email@email.com", password: "password", type: "USER")
+      user = User.create(username: "username", name: "name", email: "email@email.com", password: "Password1", type: "USER")
       user.save!
       @session = Session.create!(user: user.username)
       @session.save!
