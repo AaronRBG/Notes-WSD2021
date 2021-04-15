@@ -1,0 +1,80 @@
+
+
+<p id="notice"><%= notice %></p>
+<html class="default_backround">
+
+<div>
+    <head>
+        <title>Mi Perfil</title>
+    </head>
+    <body>
+        <div class="header">
+            <h3 class="user-name">Usuario</h3>
+            <img class="avatar" src="https://jesusmaestro.escuelateresiana.com/wp-content/uploads/2015/03/user-default.png">
+           
+        </div>
+        <ul class="socials">
+            <li>
+                <a href="email">email</a>
+            </li>
+            <li>
+                <a href="facebook">facebook</a>
+            </li>
+            <li>
+                <a href="twitter">twitter</a>
+            </li>
+             <li>
+                <%= link_to 'New Note', new_note_path %>
+            </li>
+        </ul>
+</div>
+<div class="contenido">
+<%= link_to 'New Note', new_note_path %>
+<table align: center>
+  
+  <thead>
+    <tr>
+      <!--<th>Id</th>-->
+      <th ><h3>List of notes</h3></th>
+     
+      <!--th>Text</th-->
+      <!--<th>Image</th>-->
+     
+    </tr>
+  </thead>
+
+  
+  <tbody class="notes_table">
+    <% @notes.each do |note| %>
+      <tr class="a">
+      
+        <td><h4><%= note.title %></h4>
+    
+        
+          <ul>
+          <li>
+            <%= link_to 'Show', note_path(note, :_id => note._id) %>
+          </li>
+          <li>
+            <%= link_to 'Edit', edit_note_path(note, :_id => note._id) %>
+          </li>
+          <li>
+            <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </li>
+        </ul>
+        
+        
+        </td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>
+
+<br>
+
+
+</div>
+</html>
+

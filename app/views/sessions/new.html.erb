@@ -1,0 +1,36 @@
+
+<html class="login_background">
+   <%= form_tag("/login", method: "post") do %>
+      <div class="login_box" align="center">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Log in</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                                <div class="form-group">
+   
+                                    <%= label_tag :username %> 
+                                    <%= text_field_tag :username, params[:username] %>
+                                </div>
+                                <div class="form-group">
+                                <%= label_tag :password %>&nbsp;
+                                <%= password_field_tag :password, params[:password] %>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+
+                                <div class="actions"><%= submit_tag "Log in", :class=>"btn btn-info" %></div>
+                            </fieldset>
+                        </form>
+                    </div>
+                
+      </div>
+   <% end %>
+
+
+</html>
+
