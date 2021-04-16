@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+  <div class="contenido">
+    <%= link_to 'New User', new_user_path %>
+
+    <table align: center>
+  
+      <thead>
+        <tr>
+           <!--<th>Id</th>-->
+            <th ><h3>List of users</h3></th>
+     
+     
+    </tr>
+  </thead>
+
+  
+  <tbody class="users_table">
+    <% @users.each do |user| %>
+      <tr class="a">
+      
+        <td><h4><%= user.name %></h4>
+          <ul>
+          <li>
+            <%= link_to 'Show', user_path(user, :_id => user._id) %>
+          </li>
+          <li>
+            <%= link_to 'Edit', edit_user_path(user, :_id => user._id) %>
+          </li>
+          <li>
+            <%= link_to 'Destroy', user_path(user, :_id => user._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </li>
+        </ul>
+        
+        
+        </td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>
+
+
+
+<br>
+
+
+</div>

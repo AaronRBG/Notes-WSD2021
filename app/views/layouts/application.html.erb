@@ -1,16 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NotesWsd2021</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+ <title>Notes app</title>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+ <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+ <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="header">
+        <h3 class="user-name">Mi perfil</h3>
+        <img class="avatar" src="https://jesusmaestro.escuelateresiana.com/wp-content/uploads/2015/03/user-default.png">
+       
+    </div>
+        <ul class="socials">
+             <li>
+                <a href="email">email</a>
+             </li>
+            
+             <li>
+                <a href="facebook">facebook</a>
+             </li>
+            
+             <li>
+                <a href="twitter">twitter</a>
+             </li>
 
-  <body>
+             <li> 
+                <%= link_to 'Notes', notes_path %>   
+             </li>
+
+        </ul>
+   
+    <% if session[:admin]==true %>
+        <ul class="socials">
+            <li>
+            <a href="email">email</a>
+            </li>
+        
+            <li>
+            <a href="facebook">facebook</a>
+            </li>
+        
+            <li>
+            <a href="twitter">twitter</a>
+            </li>
+
+            <li> 
+            <%= link_to 'Notes', index_note_path %>   
+            </li>
+
+            <li> 
+            <%= link_to 'Users', index_users_path %>   
+            </li>
+         </ul>
+    
+    <% end %>
+
     <%= yield %>
-  </body>
+</body>
 </html>
+
+
+

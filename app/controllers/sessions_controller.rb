@@ -16,9 +16,9 @@ class SessionsController < ApplicationController
       respond_to do |format|
         if @session.save
           if(User.find(@session.user).type=="ADMIN")
-            format.html { redirect_to action: "users/admin", notice: "Admin login was successful." }
+            format.html { redirect_to action: "users/index", notice: "Admin login was successful." }
           else
-            format.html { redirect_to action: "users/user", notice: "User login was successful." }
+            format.html { redirect_to action: "notes/index", notice: "User login was successful." }
           end
         else
           format.html { redirect_to action: "index", notice: "Login was not successful." }

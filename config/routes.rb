@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   resources :notes
 
   get "logout" => "sessions#logout", :as => "logout"
-  get "login" => "sessions#index", :as => "login"
-  post "login" => "sessions#login"
+  get "login" => "sessions#login", :as => "login"
+  post "login" => "sessions#index"
 
-  root "sessions#new"  
+##root "sessions#new"  
+
+root "users#index" 
 
 
 end
