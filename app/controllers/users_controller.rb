@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def show
-      @user = User.find(params[:_id])
+      
     end
 
     def edit

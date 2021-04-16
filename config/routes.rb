@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get "login" => "sessions#login", :as => "login"
   post "login" => "sessions#index"
 
-root "sessions#new"  
+##root "sessions#new"  
 
-##root "users#index" 
+root "users#index" 
 
 
 end
