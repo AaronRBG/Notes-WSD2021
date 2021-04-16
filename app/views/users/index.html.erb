@@ -1,39 +1,44 @@
 <p id="notice"><%= notice %></p>
   <div class="contenido">
-    <%= link_to 'New User', new_user_path %>
 
     <table align: center>
   
-      <thead>
-        <tr>
-           <!--<th>Id</th>-->
-            <th ><h3>List of users</h3></th>
-     
-     
+  <thead>
+    <tr>
+      <!--<th>Id</th>-->
+      <th >
+        <font color="White">
+          <h3 align="center">List of users</h3>
+        </font>
+      </th>
     </tr>
   </thead>
 
   
   <tbody class="users_table">
+    <td>
+      <font color="White" face="Comic Sans MS,arial">
+        <h4>Nombre
+      </font>
+    </td>
+    <td>
+      <font color="White" face="Comic Sans MS,arial">
+        <h4>Opciones
+      </font>
+    </td>
+   
     <% @users.each do |user| %>
       <tr class="a">
-      
-        <td><h4><%= user.name %></h4>
-          <ul>
-          <li>
-            <%= link_to 'Show', user_path(user, :_id => user._id) %>
-          </li>
-          <li>
-            <%= link_to 'Edit', edit_user_path(user, :_id => user._id) %>
-          </li>
-          <li>
-            <%= link_to 'Destroy', user_path(user, :_id => user._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </li>
-        </ul>
-        
-        
-        </td>
-       
+          <td>
+            <font color="Black" face="Comic Sans MS,arial">
+              <h5><%= user.name %>
+            </font>
+          </td>
+          <td>
+            <button type="button"> <%= link_to 'Show', user_path(user, :_id => user._id) %></button>
+            <button type="button"><%= link_to 'Edit', edit_user_path(user, :_id => user._id) %></button>
+            <button type="button"><%= link_to 'Destroy', user_path(user, :_id => user._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+          </td>
       </tr>
     <% end %>
   </tbody>
@@ -43,6 +48,6 @@
 
 
 <br>
-
+<button class="btn"> <%= link_to 'New User', new_user_path %></button>
 
 </div>
