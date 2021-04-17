@@ -9,7 +9,7 @@
 </head>
 
 <body class="default_backround">
-<% if session[:user]==true %>
+<% if session[:type]=="USER" %>
    <body class="default_backround">
 
     <div class="header">
@@ -37,9 +37,9 @@
              </li>
 
         </ul>
-<%end%>
+<% end %>
 
-<% if session[:admin]==true %>
+<% if session[:type] == "ADMIN" %>
    <body class="default_backround">
 
       <div class="header">
@@ -62,11 +62,11 @@
             </li>
 
             <li> 
-            <%= link_to 'Notes', index_note_path %>   
+            <%= link_to 'Notes', notes_path %>   
             </li>
 
             <li> 
-            <%= link_to 'Users', index_users_path %>   
+            <%= link_to 'Users', users_path %>   
             </li>
          </ul>
     

@@ -8,12 +8,12 @@ class UsersController < ApplicationController
     end
 
     def show
-      @user = User.find_by(params[:_id])
+      @user = User.find_by (params[:name])
       
     end
 
     def edit
-      @user = User.find(params[:_id])
+      @user = User.find_by (params[:name])
     end
 
     def promote
@@ -48,11 +48,18 @@ class UsersController < ApplicationController
     end
 
     def create
-      @user = User.create(params.require(:user).permit(:_id,:username,        
-      :password, :email, :type))
-      session[:user_id] = @user._id
-      redirect_to '/users/index'
-    end
+      @user = User.new(user_params)
+
+        if @user.save
+          session[:user] = @user.id
+          session[:type] = @user.type
+          session[:admin] = @user.admin
+          redirect_to users_path, :notice => "User was successfully created." 
+        else
+          redirect_to  users_path, :notice => "User was not created." 
+        end
+     
+    end 
 
 
     def update
@@ -60,9 +67,9 @@ class UsersController < ApplicationController
         @user = User.find(aux._id)
         respond_to do |format|
           if @user.update(:name => aux.name, :email => aux.email, :password => aux.password)
-              format.html { redirect_to action: "index", notice: "User was successfully updated." }
+              format.html { redirect_to action: "/users", notice: "User was successfully updated." }
           else
-            format.html { redirect_to action: "index", notice: "User was not updated" }
+            format.html { redirect_to action: "/users", notice: "User was not updated" }
           end
         end
     end

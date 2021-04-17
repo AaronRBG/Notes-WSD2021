@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
       @user = User.find_by(name: params[:name])
       if @user
          session[:user_id] = @user.username
-         redirect_to '/users/index'
+         session[:type] = @user.type
+         redirect_to '/notes'
       else
          redirect_to '/login'
       end
@@ -26,9 +27,9 @@ class SessionsController < ApplicationController
       respond_to do |format|
         if @session.save
           if(User.find(@session.user).type=="ADMIN")
-            format.html { redirect_to action: "users/index", notice: "Admin login was successful." }
+            format.html { redirect_to action: "/notes", notice: "Admin login was successful." }
           else
-            format.html { redirect_to action: "users/index", notice: "User login was successful." }
+            format.html { redirect_to action: "/notes", notice: "User login was successful." }
           end
         else
           format.html { redirect_to action: "index", notice: "Login was not successful." }
