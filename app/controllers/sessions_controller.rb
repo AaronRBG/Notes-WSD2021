@@ -8,7 +8,17 @@ class SessionsController < ApplicationController
     def read
       @session = Session.find(params[:_id])
     end
-  
+    
+    def create
+      @user = User.find_by(name: params[:name])
+      if @user
+         session[:user_id] = @user.username
+         redirect_to '/users/index'
+      else
+         redirect_to '/login'
+      end
+    end
+
     # POST /sessions or /sessions.json
     def login
       @session = Session.new(session_params)

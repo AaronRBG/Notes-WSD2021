@@ -7,13 +7,17 @@
  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
  <%= csrf_meta_tags %>
 </head>
-<body class="default_backround">
 
-<% if session[:admin]==true %>
+<body class="default_backround">
+<% if session[:user]==true %>
+   <body class="default_backround">
+
     <div class="header">
-        <h3 class="user-name">Mi perfil</h3>
+      <% if logged_in? %>
+        <h3 class="user-name"><%= current_user.username %></h3>
+      <%end%>
         <img class="avatar" src="https://jesusmaestro.escuelateresiana.com/wp-content/uploads/2015/03/user-default.png">
-       
+      
     </div>
         <ul class="socials">
              <li>
@@ -33,8 +37,17 @@
              </li>
 
         </ul>
-   <%end%>
-    <% if session[:admin]==true %>
+<%end%>
+
+<% if session[:admin]==true %>
+   <body class="default_backround">
+
+      <div class="header">
+         <% if logged_in? %>
+            <h3 class="user-name"><%= current_user.username %></h3>
+         <%end%>
+         <img class="avatar" src="https://jesusmaestro.escuelateresiana.com/wp-content/uploads/2015/03/user-default.png">  
+      </div>
         <ul class="socials">
             <li>
             <a href="email">email</a>
@@ -57,7 +70,7 @@
             </li>
          </ul>
     
-    <% end %>
+<% end %>
 
     <%= yield %>
 </body>

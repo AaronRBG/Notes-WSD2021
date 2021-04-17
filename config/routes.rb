@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   resources :sessions
   resources :notes
 
-  get "logout" => "sessions#logout", :as => "logout"
-  get "login" => "sessions#login", :as => "login"
-  post "login" => "sessions#index"
+  get 'logout' => "sessions#logout", :as => "logout"
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
 
-##root "sessions#new"  
+root "sessions#new"  
 
-root "users#index" 
+##root "users#index" 
 
 
 end

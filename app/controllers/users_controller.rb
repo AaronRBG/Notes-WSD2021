@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     end
 
     def show
+      @user = User.find_by(params[:_id])
       
     end
 
@@ -47,18 +48,12 @@ class UsersController < ApplicationController
     end
 
     def create
-      @user = User.new(user_params)
-    
-      respond_to do |format|
-        if @user.save
-          #Hay que cambiar index por ruta donde esten las notas de ese usuario
-          format.html { redirect_to action: "index", notice: "User successfully created." }
-        else
-          #Hay que cambiar index por ruta donde esten las notas de ese usuario
-          format.html { redirect_to action: "index", notice: "User was not created." }
-        end
-      end
+      @user = User.create(params.require(:user).permit(:_id,:username,        
+      :password, :email, :type))
+      session[:user_id] = @user._id
+      redirect_to '/users/index'
     end
+
 
     def update
         aux = User.new(user_params)
@@ -75,6 +70,6 @@ class UsersController < ApplicationController
     private
       # Only allow a list of trusted parameters through.
       def user_params
-          params.require(:user).permit(:_id, :name, :email, :username, :password, :type)
+          params.require(:user).permit(:name, :email, :username, :password, :type)
       end
 end
