@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     end
 
     def edit
-      @user = User.find_by (params[:name])
+      @user = User.find_by(params[:name])
     end
 
     def promote
@@ -51,6 +51,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
 
         if @user.save
+          #User.new(@user._id)
           session[:user] = @user.id
           session[:type] = @user.type
           session[:admin] = @user.admin
@@ -64,12 +65,12 @@ class UsersController < ApplicationController
 
     def update
         aux = User.new(user_params)
-        @user = User.find(aux._id)
+        @user = User.find_by(params[:name])
         respond_to do |format|
           if @user.update(:name => aux.name, :email => aux.email, :password => aux.password)
-              format.html { redirect_to action: "/users", notice: "User was successfully updated." }
+              format.html { redirect_to action: "index", notice: "User was successfully updated." }
           else
-            format.html { redirect_to action: "/users", notice: "User was not updated" }
+            format.html { redirect_to action: "index", notice: "User was not updated" }
           end
         end
     end
