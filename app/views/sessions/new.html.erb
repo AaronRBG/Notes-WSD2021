@@ -21,7 +21,10 @@
                                     </label>
                                 </div>
 
-                                <div class="actions"><%= submit_tag "Login", :class=>"btn btn-info" %></div>
+                                <div class="actions">
+                                <%= submit_tag "Login", :class=>"btn btn-info" %>
+                                <%= link_to "Register", "/users/new", :class=>"btn btn-info" %>
+                                </div>
                             </fieldset>
                         </form>
                     </div>

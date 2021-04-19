@@ -9,8 +9,4 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
 
 root "sessions#new"  
-
-##root "users#index" 
-
-
 end

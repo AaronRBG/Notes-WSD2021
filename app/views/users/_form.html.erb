@@ -1,8 +1,8 @@
 <%= form_with(model: user) do |form| %>
   
-    <div class="myForm" style="display: none;">  
-      <%= form.label :_id %>
-      <%= form.text_field :_id %>
+    <div class="myForm">  
+      <%= form.label :username %>
+      <%= form.text_field :username %>
     </div>
   
     <div class="myForm">
@@ -15,17 +15,10 @@
       <%= form.text_field :email %>
     </div>
   
-   
     <div class="myForm">
        <%= form.label :password %>
         <%= form.text_field :password %>
     </div>
-
-    <div class="myForm">
-    <%= form.label :type %>
-     <%= form.text_field :type %>
- </div>
-  
   
     <div class="myForm">
       <%= form.submit %>

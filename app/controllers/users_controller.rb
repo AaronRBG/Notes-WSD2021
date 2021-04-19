@@ -54,9 +54,9 @@ class UsersController < ApplicationController
           #User.new(@user._id)
           session[:user] = @user.id
           session[:type] = @user.type
-          redirect_to users_path, :notice => "User was not created." 
+          redirect_to users_path, :notice => "User was successfully created"
         else
-          redirect_to  users_path, :notice => "User was successfully created" 
+          redirect_to users_path, :notice => "User was not created." 
         end
      
     end 
