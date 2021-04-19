@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   resources :sessions
   resources :notes
 
-  get 'logout' => "sessions#logout", :as => "logout"
+  delete 'logout' => "sessions#logout"
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
+
 
 root "sessions#new"  
 end

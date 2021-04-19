@@ -37,6 +37,10 @@
              <li> 
                 <%= link_to 'Notes', notes_path %>   
              </li>
+ 
+            <li> 
+               <%= link_to 'Logout', logout_path, method: :delete %>   
+            </li>
 
         </ul>
 <% end %>
@@ -72,6 +76,12 @@
             <li> 
             <%= link_to 'Users', users_path %>   
             </li>
+
+            <li> 
+            <%= link_to 'Logout', logout_path, method: :delete %>   
+            </li>
+
+
          </ul>
     
 <% end %>

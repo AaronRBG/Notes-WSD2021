@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
     # DELETE /sessions/1 or /sessions/1.json
     def logout
       @session = Session.find(params[:_id])
-      @session.destroy
+      @session.delete
       respond_to do |format|
           format.html { redirect_to action: "index", notice: "Logout was successful." }
       end
