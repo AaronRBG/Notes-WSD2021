@@ -15,7 +15,7 @@ class User
     store_in collection: "users", database: "NotesWSD2021"
     
     field :_id, type: String, default: ->{ SecureRandom.uuid.to_s} 
-   # field :_id, type: String, :as => :username
+    field :_id, type: String, :as => :username
     field :name, type: String
     field :email, type: String
     field :password, type: String

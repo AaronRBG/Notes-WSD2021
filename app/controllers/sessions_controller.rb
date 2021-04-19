@@ -11,12 +11,16 @@ class SessionsController < ApplicationController
     
     def create
       @user = User.find_by(name: params[:name])
-      if @user
+      if !@user
+        flash.now.alert = "name #{params[:name]} was invalid"
+        render :new
+      elsif @user.password == params[:password]
          session[:user_id] = @user.username
          session[:type] = @user.type
          redirect_to '/notes'
       else
-         redirect_to '/login'
+        flash.now.alert = "password was invalid"
+        render :new
       end
     end
 
