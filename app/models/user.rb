@@ -26,7 +26,7 @@ class User
     validates :username, format: { without: /\s/}
     validates :type, inclusion: { in: %w(USER ADMIN) }
     validates :password, format: {with: PASS_REQ}
-    validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i
+    validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(es|com|edu|org|net|gov|mil|biz|info))\z/i
     
     has_one :session
     has_many :userNotes

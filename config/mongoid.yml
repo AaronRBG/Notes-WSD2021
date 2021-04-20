@@ -10,6 +10,8 @@ development:
         auth_source: admin    
         ssl: true
         ssl_verify: false
+  options:
+    raise_not_found_error: false
 
 production:
   clients:
@@ -23,6 +25,8 @@ production:
         auth_source: admin    
         ssl: true
         ssl_verify: false
+  options:
+    raise_not_found_error: false
 
 test:
   clients:
@@ -36,3 +40,5 @@ test:
         auth_source: admin    
         ssl: true
         ssl_verify: false
+  options:
+    raise_not_found_error: false

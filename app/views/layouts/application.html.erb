@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Notes app</title>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= csrf_meta_tags %>
+   </head>
+   <body class="default_backround" style>
+      <% if session[:type]=="USER" || session[:type]=="ADMIN" %>
+         <div>
+            <div class="header">
+               <img class="avatar" src="https://jesusmaestro.escuelateresiana.com/wp-content/uploads/2015/03/user-default.png">
+               <h4> <% session[:type] %> </h4>  
+            </div>
+            <ul class="socials">
+               <% if session[:type] == "ADMIN" %>
+                  <li> 
+                     <%= link_to 'Notes', notes_path %>   
+                  </li>
+                  <li>
+                     <%= link_to 'Users', users_path %>   
+                  </li>
+               <% else %>
+                  <li> 
+                     <%= link_to 'My Notes', notesUser_path(:user => session[:user_id]) %>   
+                  </li>
+               <% end %>
+               <li> 
+                  <%= link_to 'Logout', logout_path, method: :delete %>   
+               </li>
+            </ul>
+      <% else %>
+         <div style="margin: auto; width: 40%">
+      <% end %>         
+      <%= yield %>
+      </div>
+   </body>
+</html>
