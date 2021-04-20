@@ -14,7 +14,26 @@ class NotesController < ApplicationController
 
     def getShare
       @note = Note.find(params[:_id])
-      @user = params[:userShared]
+      @users = User.all
+      render :share
+    end
+
+    def notesUser
+      usernotes = UserNote.where(:user_id => params[:user]).to_a
+      notes = []
+      if !usernotes.nil?
+        if usernotes.kind_of?(Array)
+          usernotes.each do |item|
+            note = Note.find(item.note_id)
+            notes.append(note)
+          end
+        else
+          note = Note.find(usernotes.note_id)
+          notes.append(note)
+        end
+      end
+      @notes = notes
+      render :index
     end
 
     def edit
@@ -22,48 +41,41 @@ class NotesController < ApplicationController
     end
 
     def share
-      UserNote.new(@note._id, @user)
+      usernote = UserNote.new(:note => params[:note], :user => params[:user])
+      usernote.save
+      redirect_to notesUser_path(params[:user])
     end
   
     def create
       @note = Note.new(note_params)
-  
-      respond_to do |format|
-        if @note.save
-          UserNote.new(@note._id, params[:user])
-          format.html { redirect_to action: "index", notice: "Note was successfully created." }
-        else
-          format.html { redirect_to action: "index", notice: "Note was not created." }
-        end
+      if @note.save
+        usernote = UserNote.new(:note => @note._id, :user => session[:user_id])
+        usernote.save!
       end
+      redirect_to notes_path
     end
   
     def update
       aux = Note.new(note_params)
       @note = Note.find(aux._id)
-      respond_to do |format|
-        if @note.update(:title => aux.title, :text => aux.text, :image => aux.image)
-            format.html { redirect_to action: "index", notice: "Note was successfully created." }
-        else
-          format.html { redirect_to action: "index", notice: "Note was not created." }
-        end
-      end
+      @note.update(:title => aux.title, :text => aux.text, :image => aux.image)
+      redirect_to notes_path
     end
   
     def destroy
-        @note = Note.find(params[:_id])
-        noteID = @note._id
-        if @note.destroy
-          UserNote.find(:note_id => noteID).destroy
-          render :index
+      @note = Note.find(params[:_id])
+      noteID = @note._id
+      if @note.destroy
+        usernote = UserNote.find_by(:note_id => noteID)
+        usernote.delete
+      end
+      render :index
     end
 
     private
-        # Only allow a list of trusted parameters through.
-        def note_params
-            params.require(:note).permit(:_id, :title, :text, :image)
-        end
-  
-  end
+      # Only allow a list of trusted parameters through.
+      def note_params
+        params.require(:note).permit(:_id, :title, :text, :image)
+      end
 end
   

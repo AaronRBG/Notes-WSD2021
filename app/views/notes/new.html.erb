@@ -4,6 +4,6 @@
 <%= render 'form', note: @note %>
 <br>
 
-<%= link_to 'Back', notes_path %>
+<%= link_to 'Back', notesUser_path(:user => session[:user_id]) %>
 </div>
 <html>

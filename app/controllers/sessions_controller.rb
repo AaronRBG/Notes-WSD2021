@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
 
   # GET /sessions/new
   def index
+    session[:_id] = "NONE"
+    session[:user_id] = "NONE"
     session[:type] = "NONE"
     @session = Session.new
   end
@@ -37,6 +39,8 @@ class SessionsController < ApplicationController
     @session = Session.find(session[:_id])
     @session.destroy
     flash.now.alert = "Logout was successful"
+    session[:_id] = "NONE"
+    session[:user_id] = "NONE"
     session[:type] = "NONE"
     render :new
   end
