@@ -55,9 +55,7 @@ class NotesController < ApplicationController
         noteID = @note._id
         if @note.destroy
           UserNote.find(:note_id => noteID).destroy
-        respond_to do |format|
-            format.html { redirect_to action: "index", notice: "Note was successfully created." }
-        end
+          render :index
     end
 
     private

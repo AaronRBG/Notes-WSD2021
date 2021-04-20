@@ -30,6 +30,9 @@
             <%= link_to 'Edit', edit_note_path(note, :_id => note._id) %>
           </li>
           <li>
+            <%= link_to 'Share', note_path(note, :_id => note._id), remote: true, method: :share, data: { confirm: 'Are you sure?' } %>
+          </li>
+          <li>
             <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
           </li>
         </ul>

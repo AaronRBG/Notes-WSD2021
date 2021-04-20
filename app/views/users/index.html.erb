@@ -37,6 +37,11 @@
           <td>
             <button type="button"> <%= link_to 'Show', user_path(user, :_id => user._id) %></button>
             <button type="button"><%= link_to 'Edit', edit_user_path(user, :_id => user._id) %></button>
+            <% if user.type == "USER" %>
+              <button type="button"><%= link_to 'Promote', user_path(user, :_id => user._id), remote: true, method: :promote, data: { confirm: 'Are you sure?' } %></button>
+            <% else %>
+              <button type="button"><%= link_to 'Demote', user_path(user, :_id => user._id), remote: true, method: :demote, data: { confirm: 'Are you sure?' } %></button>
+            <% end %>
             <button type="button"><%= link_to 'Destroy', user_path(user, :_id => user._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
           </td>
       </tr>

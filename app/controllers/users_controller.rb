@@ -8,12 +8,12 @@ class UsersController < ApplicationController
     end
 
     def show
-      @user = User.find_by (params[:name])
+      @user = User.find(params[:_id])
       
     end
 
     def edit
-      @user = User.find_by(params[:name])
+      @user = User.find(params[:_id])
     end
 
     def promote
@@ -41,10 +41,7 @@ class UsersController < ApplicationController
     def destroy
       @user = User.find(params[:_id])
       @user.destroy
-      respond_to do |format|
-        #Hay que cambiar index por ruta donde esten todas los usuarios para administrar por el administrador
-        format.html { redirect_to action: "view with all users", notice: "User deleted succesfully" }
-        end
+      render :users
     end
 
     def create
@@ -64,7 +61,7 @@ class UsersController < ApplicationController
 
     def update
         aux = User.new(user_params)
-        @user = User.find_by(params[:name])
+        @user = User.find(params[:_id])
         respond_to do |format|
           if @user.update(:name => aux.name, :email => aux.email, :password => aux.password)
               format.html { redirect_to action: "index", notice: "User was successfully updated." }
