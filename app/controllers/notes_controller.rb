@@ -12,7 +12,7 @@ class NotesController < ApplicationController
 
     def show
       if session[:user_id] != "NONE"
-        if UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
           @note = Note.find(params[:_id])
         else
           redirect_to notesUser_path(:user => session[:user_id])
@@ -32,7 +32,7 @@ class NotesController < ApplicationController
 
     def getShare
       if session[:user_id] != "NONE"
-        if UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
           @note = Note.find(params[:_id])
           @users = User.all
           render :share
@@ -70,7 +70,7 @@ class NotesController < ApplicationController
 
     def edit
       if session[:user_id] != "NONE"
-        if UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
           @note = Note.find(params[:_id])
         else
           redirect_to notesUser_path(:user => session[:user_id])
@@ -82,7 +82,7 @@ class NotesController < ApplicationController
 
     def share
       if session[:user_id] != "NONE"
-        if UserNote.find_by(:note_id => params[:note], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:note], :user_id => session[:user_id])
           usernote = UserNote.new(:note_id => params[:note], :user_id => params[:user])
           usernote.save
         end
@@ -110,14 +110,16 @@ class NotesController < ApplicationController
     end
   
     def update
-      if session[:type] == "ADMIN" || session[:type] == "USER"
-        aux = Note.new(note_params)
-        @note = Note.find(aux._id)
-        @note.update(:title => aux.title, :text => aux.text, :image => aux.image)
-        if session[:type] == "ADMIN"
-          redirect_to notes_path
-        else
-          redirect_to notesUser_path(:user => session[:user_id])
+      if session[:user_id] != "NONE"
+        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+          aux = Note.new(note_params)
+          @note = Note.find(aux._id)
+          @note.update(:title => aux.title, :text => aux.text, :image => aux.image)
+          if session[:type] == "ADMIN"
+            redirect_to notes_path
+          else
+            redirect_to notesUser_path(:user => session[:user_id])
+          end
         end
       else
         redirect_to login_path
@@ -126,11 +128,15 @@ class NotesController < ApplicationController
   
     def destroy
       if session[:user_id] != "NONE"
-        if UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
           @note = Note.find(params[:_id])
           noteID = @note._id
-          if @note.destroy
-            usernote = UserNote.find_by(:note_id => noteID)
+          usernote = UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+          if UserNote.where(:note_id => noteID).count == 1
+            @note.destroy
+            usernote = UserNote.find_by(:note_id => params[:_id])
+          end
+          if usernote != undefined
             usernote.delete
           end
           redirect_to notes_path

@@ -71,8 +71,8 @@ class UsersController < ApplicationController
         if UserNote.where(:note_id => usernotes[i].note_id).count == 1
           note = Note.find(usernotes[i].note_id)
           note.delete
-          usernotes[i].delete
         end
+        usernotes[i].delete
         i = i+1
       end
       @user.destroy
