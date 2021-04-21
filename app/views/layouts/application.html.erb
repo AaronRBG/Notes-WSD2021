@@ -20,6 +20,9 @@
             </div>
             <ul class="socials">
                <% if session[:type] == "ADMIN" %>
+                  <li>
+                     <%= link_to 'New Note', new_note_path(:user => session[:user_id]) %>
+                  </li>
                   <li> 
                      <%= link_to 'Notes', notes_path %>   
                   </li>
