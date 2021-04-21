@@ -1,58 +1,117 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    if session[:type] == "ADMIN"
+      @users = User.all
+    elsif session[:type] == "USER"
+      redirect_to notesUser_path(:user => session[:user_id])
+    else
+      redirect_to login_path
+    end
   end
 
   def new
-    @user = User.new
+    if session[:type] != "USER"
+      @user = User.new
+    else
+      redirect_to notesUser_path(:user => session[:user_id])
+    end
   end
 
   def show
-    @user = User.find(params[:_id])
+    if session[:type] == "ADMIN"
+      @user = User.find(params[:_id])
+    elsif session[:type] == "USER"
+      redirect_to notesUser_path(:user => session[:user_id])
+    else
+      redirect_to login_path
+    end
   end
 
   def edit
-    @user = User.find(params[:_id])
+    if session[:type] == "ADMIN"
+      @user = User.find(params[:_id])
+    elsif session[:type] == "USER"
+      redirect_to notesUser_path(:user => session[:user_id])
+    else
+      redirect_to login_path
+    end
   end
 
   def promote
-    @user = User.find(params[:_id])
-    @user.update(:type => "ADMIN")
-    redirect_to users_path
+    if session[:type] == "ADMIN"
+      @user = User.find(params[:_id])
+      @user.update(:type => "ADMIN")
+      redirect_to users_path
+    elsif session[:type] == "USER"
+      redirect_to notesUser_path(:user => session[:user_id])
+    else
+      redirect_to login_path
+    end
   end
 
   def demote
-    @user = User.find(params[:_id])
-    @user.update(:type => "USER")
-    redirect_to users_path
+    if session[:type] == "ADMIN"
+      @user = User.find(params[:_id])
+      @user.update(:type => "USER")
+      redirect_to users_path
+    elsif session[:type] == "USER"
+      redirect_to notesUser_path(:user => session[:user_id])
+    else
+      redirect_to login_path
+    end
   end
       
   def destroy
-    @user = User.find(params[:_id])
-    #usernotes = UserNote.find_by(:user => @user.username)
-    #usernotes.each do |usernote|
-      #note = Note.find(usernote.note)
-      #note.delete
-      #usernote.delete
-    #end
-    @user.destroy
-    redirect_to users_path
+    if session[:type] == "ADMIN"
+      @user = User.find(params[:_id])
+      # DELETE NOTES ON CASCADE
+      usernotes = UserNote.where(:user_id => @user.username).to_a
+      i = 0
+      while i < usernotes.length do
+        if UserNote.where(:note_id => usernotes[i].note_id).count == 1
+          note = Note.find(usernotes[i].note_id)
+          note.delete
+          usernotes[i].delete
+        end
+        i = i+1
+      end
+      @user.destroy
+      redirect_to users_path
+    elsif session[:type] == "USER"
+      redirect_to notesUser_path(:user => session[:user_id])
+    else
+      redirect_to login_path
+    end
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user] = @user.id
-      session[:type] = @user.type
+    if session[:type] != "USER"
+      @user = User.new(user_params)
+      if @user.save
+        session[:user] = @user.id
+        session[:type] = @user.type
+      end
+      if session[:type] == "ADMIN"
+        redirect_to users_path
+      else
+        redirect_to login_path
+      end
+    else
+      redirect_to notesUser_path(:user => session[:user_id])
     end
-    redirect_to users_path
   end 
 
   def update
-    aux = User.new(user_params)
-    @user = User.find(params[:_id])
-    @user.update(:name => aux.name, :email => aux.email, :password => aux.password)
-    redirect_to users_path
+    if session[:type] == "ADMIN"
+      aux = User.new(user_params)
+      @user = User.find(params[:_id])
+      @user.update(:name => aux.name, :email => aux.email, :password => aux.password)
+      redirect_to users_path
+    elsif session[:type] == "USER"
+      redirect_to notesUser_path(:user => session[:user_id])
+    else
+      redirect_to login_path
+    end
   end
     
   private
