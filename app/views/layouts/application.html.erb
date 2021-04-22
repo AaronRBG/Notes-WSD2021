@@ -11,12 +11,7 @@
          <div>
             <div class="header">
                <img class="avatar" src="https://jesusmaestro.escuelateresiana.com/wp-content/uploads/2015/03/user-default.png">
-               <% if session[:type] == "ADMIN" %>
-                  <p class="user-name">Admin<p>
-                <% else %>
-                  <p class="user-name">User<p>
-                <% end %>
-               
+               <p class="user-name"><%= session[:user_id] %><p>
             </div>
             <ul class="socials">
                <% if session[:type] == "ADMIN" %>
@@ -30,9 +25,6 @@
                      <%= link_to 'Users', users_path %>   
                   </li>
                <% else %>
-                  <li>
-                  <%= link_to 'New Note', new_note_path(:user => session[:user_id]) %>
-                  </li>
                   <li> 
                      <%= link_to 'My Notes', notesUser_path(:user => session[:user_id]) %>   
                   </li>

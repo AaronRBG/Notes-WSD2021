@@ -7,16 +7,12 @@ class SessionsController < ApplicationController
     session[:type] = "NONE"
     @session = Session.new
   end
-
-  def read
-    @session = Session.find(params[:_id])
-  end
   
   def create
     @current_user = User.find(params[:username])
     if !@current_user
       flash.now.alert = "name #{params[:username]} was invalid"
-      render :new
+      redirect_to login_path
     elsif @current_user.password == params[:password]
       aux = Session.find_by(:user => @current_user.username)
       if !aux.nil?
@@ -27,22 +23,28 @@ class SessionsController < ApplicationController
       session[:_id] = @session._id
       session[:user_id] = @current_user.username
       session[:type] = @current_user.type
-      redirect_to '/notes'
+      if @current_user.type == "ADMIN"
+        redirect_to notes_path
+      else
+        redirect_to notesUser_path(:user => @current_user.username)
+      end
     else
       flash.now.alert = "password was invalid"
-      render :new
+      redirect_to login_path
     end
   end
 
   # DELETE /sessions/1 or /sessions/1.json
   def logout
-    @session = Session.find(session[:_id])
-    @session.destroy
-    flash.now.alert = "Logout was successful"
-    session[:_id] = "NONE"
-    session[:user_id] = "NONE"
-    session[:type] = "NONE"
-    render :new
+    if session[:_id] != "NONE"
+      @session = Session.find(session[:_id])
+      @session.destroy
+      flash.now.alert = "Logout was successful"
+      session[:_id] = "NONE"
+      session[:user_id] = "NONE"
+      session[:type] = "NONE"
+    end
+    redirect_to login_path
   end
 
   private
