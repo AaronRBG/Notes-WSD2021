@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :notes
 
   delete 'logout' => "sessions#logout"
-  delete 'destroy_user' => "users#destroy"
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   post 'promote', to: 'users#promote'

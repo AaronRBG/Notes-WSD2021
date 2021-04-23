@@ -31,14 +31,12 @@ class NotesController < ApplicationController
     end
 
     def getShare
-      if session[:user_id] != "NONE"
-        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
-          @note = Note.find(params[:_id])
-          @users = User.all
-          render :share
-        else
-          redirect_to notesUser_path(:user => session[:user_id])
-        end
+      if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+        @note = Note.find(params[:_id])
+        @users = User.all
+        render :share
+      elsif session[:type] == "USER"
+        redirect_to notesUser_path(:user => session[:user_id])
       else
         redirect_to login_path
       end
@@ -86,7 +84,7 @@ class NotesController < ApplicationController
           usernote = UserNote.new(:note_id => params[:note], :user_id => params[:user])
           usernote.save
         end
-        redirect_to notesUser_path(:user => params[:user_id])
+        redirect_to notesUser_path(:user => session[:user_id])
       else
         redirect_to login_path
       end
@@ -113,7 +111,7 @@ class NotesController < ApplicationController
       if session[:user_id] != "NONE"
         if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
           aux = Note.new(note_params)
-          @note = Note.find(aux._id)
+          @note = Note.find(params[:_id])
           @note.update(:title => aux.title, :text => aux.text, :image => aux.image)
           if session[:type] == "ADMIN"
             redirect_to notes_path
@@ -136,12 +134,14 @@ class NotesController < ApplicationController
             @note.destroy
             usernote = UserNote.find_by(:note_id => params[:_id])
           end
-          if usernote != undefined
+          if usernote != "undefined"
             usernote.delete
           end
-          redirect_to notes_path
-        else
-          redirect_to notesUser_path(session[:user_id])
+          if session[:type] == "ADMIN"
+            redirect_to notes_path
+          else
+            redirect_to notesUser_path(:user => session[:user_id])
+          end
         end
       else
         redirect_to login_path
