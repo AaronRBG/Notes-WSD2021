@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   # GET /sessions/new
-  def index
+  def new
     session[:_id] = "NONE"
     session[:user_id] = "NONE"
     session[:type] = "NONE"

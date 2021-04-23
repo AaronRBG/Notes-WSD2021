@@ -12,6 +12,7 @@ gem 'mongo', '~> 2.14.0'
 gem 'bson', '~> 4.12.0'
 gem 'rspec-rails', '~> 5.0.0'
 gem 'uuidtools'
+gem 'rails-controller-testing'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
