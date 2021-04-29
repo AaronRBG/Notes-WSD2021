@@ -12,6 +12,6 @@ class Collection
     validates_presence_of :_id, :title
     validates_uniqueness_of :_id
 
-    has_many : notes
+    has_many :notes
     belongs_to :user
 end

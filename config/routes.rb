@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :notes
+  resources :collection
 
   delete 'logout' => "sessions#logout"
   get 'login', to: 'sessions#new'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   get 'share', to: 'notes#getShare'
   post 'share', to: 'notes#share'
   get 'notesUser', to: 'notes#notesUser'
+  get 'collectionNotes', to: 'collection#collectionNotes'
 
 root "sessions#new"  
 end
