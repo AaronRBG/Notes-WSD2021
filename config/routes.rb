@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'share', to: 'notes#getShare'
   post 'share', to: 'notes#share'
   get 'notesUser', to: 'notes#notesUser'
-  get 'collectionNotes', to: 'collection#collectionNotes'
+  get 'collectionUsers', to: 'collection#collectionUsers'
 
 root "sessions#new"  
 end
