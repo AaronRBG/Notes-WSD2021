@@ -36,7 +36,7 @@ class NotesController < ApplicationController
         users = User.all
         @users = []
         users.each do |item|
-          if !(UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id]))
+          if !(UserNote.find_by(:note_id => params[:_id], :user_id => item._id))
             @users.append(item)
           end
         end

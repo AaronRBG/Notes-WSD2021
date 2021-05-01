@@ -13,6 +13,5 @@ class Notecollection
     validates_presence_of :_id, :name
     validates_uniqueness_of :_id
 
-    has_many :notes
     has_many :userCollections
 end

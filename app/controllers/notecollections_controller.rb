@@ -35,7 +35,7 @@ class NotecollectionsController < ApplicationController
         users = User.all
         @users = []
         users.each do |item|
-          if !(UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id]))
+          if !(UserNote.find_by(:note_id => params[:_id], :user_id => item._id))
             @users.append(item)
           end
         end
@@ -65,7 +65,7 @@ class NotecollectionsController < ApplicationController
         if session[:type] == "ADMIN"
           @notes = Note.all
         else
-          usernotes = UserNote.where(:user_id => params[:user]).to_a
+          usernotes = UserNote.where(:user_id => session[:user_id]).to_a
           notes = []
           if !usernotes.nil?
             if usernotes.kind_of?(Array)
@@ -92,9 +92,8 @@ class NotecollectionsController < ApplicationController
       if session[:user_id] != "NONE"
         if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:notecollection], :user_id => session[:user_id])
           @notecollection = Notecollection.find(params[:_id])
-          notes = @notecollection.notes
-          notes.append(params[:note_id])
-          @notecollection.update(:notes => notes)
+          @notecollection.notes.append(params[:note_id])
+          @notecollection.save!
         end
         redirect_to notecollectionsUser_path(:user => session[:user_id])
       else
@@ -106,10 +105,9 @@ class NotecollectionsController < ApplicationController
       if session[:user_id] != "NONE"
         if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:notecollection], :user_id => session[:user_id])
           @notecollection = Notecollection.find(params[:_id])
-          notes = @notecollection.notes
-          if notes.include?(params[:note_id])
-            notes = notes.delete(params[:note_id])
-            @notecollection.update(:notes => notes)
+          if @notecollection.notes.include?(params[:note_id])
+            @notecollection.notes.delete(params[:note_id])
+            @notecollection.save!
           end
         end
         redirect_to notecollectionsUser_path(:user => session[:user_id])
