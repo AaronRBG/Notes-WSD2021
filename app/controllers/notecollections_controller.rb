@@ -32,7 +32,13 @@ class NotecollectionsController < ApplicationController
     def getShare
       if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:_id], :user_id => session[:user_id])
         @notecollection = Notecollection.find(params[:_id])
-        @users = User.all
+        users = User.all
+        @users = []
+        users.each do |item|
+          if !(UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id]))
+            @users.append(item)
+          end
+        end
         render :share
       elsif session[:type] == "USER"
         redirect_to notecollectionsUser_path(:user => session[:user_id])

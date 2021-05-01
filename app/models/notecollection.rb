@@ -8,7 +8,7 @@ class Notecollection
 
     field :_id, type: String, default: ->{ SecureRandom.uuid.to_s} 
     field :name, type: String
-    field :notes, type: Array, default: ["none"].append("note2")
+    field :notes, type: Array, default: []
 
     validates_presence_of :_id, :name
     validates_uniqueness_of :_id
