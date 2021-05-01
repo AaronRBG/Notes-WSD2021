@@ -7,6 +7,6 @@ class UserCollection
     
   field :_id, type: String, default: ->{ SecureRandom.uuid.to_s} 
   
-  belongs_to :collection
+  belongs_to :notecollection
   belongs_to :user
 end
