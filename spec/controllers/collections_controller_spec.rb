@@ -52,9 +52,9 @@ RSpec.describe CollectionsController, :type => :controller do
         expect(response).to render_template("new")
       end
     end
-    describe "GET share" do
+    describe "GET shareCollection" do
       it "returns the login if there is no session" do
-        expect(:get => "/share").to route_to("collections#getShare")
+        expect(:get => "/shareCollection").to route_to("collections#getShare")
         session[:type] = "NONE"
         get :getShare, params: { :_id => @collection._id}
         expect(response).to redirect_to login_path
@@ -65,9 +65,9 @@ RSpec.describe CollectionsController, :type => :controller do
         expect(response).to render_template("share")
       end
     end
-    describe "POST share" do
+    describe "POST shareCollection" do
       it "returns the login if there is no session" do
-        expect(:post => "/share").to route_to("collections#share")
+        expect(:post => "/shareCollection").to route_to("collections#share")
         session[:user_id] = "NONE"
         post :share, params: { :_id => @collection._id,  :id => @collection._id}
         expect(response).to redirect_to login_path
@@ -103,6 +103,19 @@ RSpec.describe CollectionsController, :type => :controller do
         session[:type] = "ADMIN"
         get :edit, params: { :_id => @collection._id,  :id => @collection._id}
         expect(response).to render_template("edit")
+      end
+    end
+    describe "GET add" do
+      it "returns the login if there is no session" do
+        expect(:get => "/add").to route_to("collections#getAdd")
+        session[:type] = "NONE"
+        get :getAdd, params: { :_id => @collection._id}
+        expect(response).to redirect_to login_path
+      end
+      it "returns the add note to collection page if there is the user has access to this operation" do
+        session[:type] = "ADMIN"
+        get :getAdd, params: { :_id => @collection._id}
+        expect(response).to render_template("add")
       end
     end
     describe "POST add" do
