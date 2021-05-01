@@ -1,12 +1,12 @@
 require 'uuidtools'
 require 'rails/mongoid'
 
-class UserNote
+class UserCollection
   include Mongoid::Document
-  store_in collection: "userNotes", database: "NotesWSD2021"
-  
+  store_in collection: "userCollections", database: "NotesWSD2021"
+    
   field :_id, type: String, default: ->{ SecureRandom.uuid.to_s} 
-
-  belongs_to :note
+  
+  belongs_to :collection
   belongs_to :user
 end

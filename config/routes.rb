@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :user_notes
+  resources :user_collections
   resources :users
   resources :sessions
   resources :notes
-  resources :collection
+  resources :collections
 
   delete 'logout' => "sessions#logout"
   get 'login', to: 'sessions#new'
