@@ -130,7 +130,7 @@ RSpec.describe NotecollectionsController, :type => :controller do
       it "Adds the note to the collection, if the user has access to this operation" do
         session[:type] = "ADMIN"
         session[:user_id] = "Admin"
-        note = Note.create!(title: "titulo", text: "Texto")
+        note = Note.create!(title: "titulo2", text: "Texto2")
         note.save!
         post :add, params: { :_id => @notecollection._id, :id => @notecollection._id, :note => note._id }
         expect(response).to redirect_to notecollectionsUser_path(:user => "Admin")
@@ -141,13 +141,17 @@ RSpec.describe NotecollectionsController, :type => :controller do
       it "returns the login if there is no session" do
         expect(:post => "/removeNote").to route_to("notecollections#removeNote")
         session[:user_id] = "NONE"
-        post :removeNote, params: { :_id => @notecollection._id, :id => @notecollection._id, :note_id => @note._id }
+        note = Note.find_by(:title => "titulo")
+        post :removeNote, params: { :_id => @notecollection._id, :id => @notecollection._id, :note_id => note._id }
+        note.delete
         expect(response).to redirect_to login_path
       end
       it "Removes the note from the collection, if the user has access to this operation" do
         session[:type] = "ADMIN"
         session[:user_id] = "Admin"
-        post :removeNote, params: { :_id => @notecollection._id, :id => @notecollection._id, :note_id => @note._id }
+        note = Note.find_by(:title => "titulo2")
+        post :removeNote, params: { :_id => @notecollection._id, :id => @notecollection._id, :note_id => note._id }
+        note.delete
         expect(response).to redirect_to notecollectionsUser_path(:user => "Admin")
       end
     end
@@ -188,7 +192,7 @@ RSpec.describe NotecollectionsController, :type => :controller do
         session[:type] = "USER"
         session[:user_id] = "User"
         patch :update, params: { :id => id2, :_id => id2, :notecollection => { :name => "Titulo3"} }
-        expect(response).to redirect_to notescollectionsUser_path(:user => "User")
+        expect(response).to redirect_to notecollectionsUser_path(:user => "User")
       end
     end
     describe "DELETE destroy" do

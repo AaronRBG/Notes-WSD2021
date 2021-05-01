@@ -42,7 +42,7 @@
             <% else %>
               <button type="button"><%= link_to 'Demote', demote_path(user, :_id => user._id), method: :post %></button>
             <% end %>
-            <button type="button"><%= link_to 'Destroy', destroy_user_path(user, :_id => user._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            <button type="button"><%= link_to 'Destroy', user_path(user, :_id => user._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
           </td>
       </tr>
     <% end %>
