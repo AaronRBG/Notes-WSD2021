@@ -26,7 +26,9 @@ class SessionsController < ApplicationController
       if @current_user.type == "ADMIN"
         redirect_to notes_path
       else
-        redirect_to notesUser_path(:user => @current_user.username)
+  
+  #HE CAMBIADO ESTOOOOOOOOOO antes ponia noteUser_path
+        redirect_to notecollectionsUser_path(:user => @current_user.username)
       end
     else
       flash.now.alert = "password was invalid"
