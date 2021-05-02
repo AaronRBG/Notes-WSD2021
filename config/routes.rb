@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :notes
   resources :notecollections
 
+ 
+  get "add", to: "notes#add"
+  
   delete 'logout' => "sessions#logout"
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -14,12 +17,14 @@ Rails.application.routes.draw do
   get 'share', to: 'notes#getShare'
   post 'share', to: 'notes#share'
   get 'notesUser', to: 'notes#notesUser'
+  
   get 'shareCollection', to: 'notecollections#getShare'
   post 'shareCollection', to: 'notecollections#share'
-  get 'add', to: 'notecollections#getAdd'
-  post 'add', to: 'notecollections#add'
+  get 'addNote', to: 'notecollections#getAdd'
+  post 'addNote', to: 'notecollections#add'
   post 'removeNote', to: 'notecollections#removeNote'
   get 'notecollectionsUser', to: 'notecollections#notecollectionsUser'
 
 root "sessions#new"  
+#root "notes#index" 
 end
