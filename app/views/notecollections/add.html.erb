@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+  <div class="contenido">
+
+    <table align: center>
+  
+<font color="White">
+          <h3 align: center>Select a Collection to add the note</h3>
+</font>
+
+
+
+    <tbody class="users_table">
+    <td>
+      <font color="White" face="Comic Sans MS,arial">
+        <h4>Nombre
+      </font>
+    </td>
+    <td>
+      <font color="White" face="Comic Sans MS,arial">
+        <h4> 
+      </font>
+    </td>
+   
+    <% @notecollections.each do |notecollection| %>
+      <tr class="a">
+          <td>
+            <font color="Black" face="Comic Sans MS,arial">
+              <h5><%= notecollection.name %>
+            </font>
+          </td>
+          <td>
+            <button class="btn"><%= link_to 'Add note', add_notecollection_path(notecollection, :_id => notecollection._id)%></button>
+
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+
+   
+</div>

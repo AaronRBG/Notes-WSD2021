@@ -1,0 +1,9 @@
+<div class="contenido">
+<h3>New Collection</h3>
+<br>
+<%= render 'form', notecollection: @notecollection %>
+<br>
+
+<%= link_to 'Back', notecollectionsUser_path(:user => session[:user_id]) %>
+</div>
+<html>

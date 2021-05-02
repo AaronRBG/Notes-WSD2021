@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+  <div class="contenido">
+
+    <table align: center>
+    <button class="btn"> <%= link_to 'New Collection', new_notecollection_path %></button>
+<font color="White">
+          <h3 align: center>List of collections</h3>
+</font>
+
+
+
+    <tbody class="users_table">
+    <td>
+      <font color="White" face="Comic Sans MS,arial">
+        <h4>Nombre
+      </font>
+    </td>
+    <td>
+      <font color="White" face="Comic Sans MS,arial">
+        <h4>Opciones
+      </font>
+    </td>
+   
+    <% @notecollections.each do |notecollection| %>
+      <tr class="a">
+          <td>
+            <font color="Black" face="Comic Sans MS,arial">
+              <h5><%= notecollection.name %>
+            </font>
+          </td>
+          <td>
+            <button class="btn"><%= link_to 'Destroy Collection', notecollection_path(notecollection, :_id => notecollection._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            <button class="btn"><%= link_to 'Show Notes', notecollection_path(notecollection, :_id => notecollection._id) %></button>
+            
+
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+
+   
+</div>
+
+

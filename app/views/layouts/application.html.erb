@@ -25,9 +25,18 @@
                      <%= link_to 'Users', users_path %>   
                   </li>
                <% else %>
+               <li>
+                     <%= link_to 'New Note', new_note_path(:user => session[:user_id]) %>
+                  </li>
                   <li> 
                      <%= link_to 'My Notes', notesUser_path(:user => session[:user_id]) %>   
                   </li>
+                  <li> 
+                     <%= link_to 'My Collections', notecollectionsUser_path(:user => session[:user_id]) %>   
+                  </li>
+                   <!--li> 
+                     <%= link_to 'My Collections', notecollections_path(:user => session[:user_id]) %>   
+                  </li-->
                <% end %>
                <li> 
                   <%= link_to 'Logout', logout_path, method: :delete %>   
