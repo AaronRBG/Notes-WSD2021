@@ -11,7 +11,7 @@ class NotesController < ApplicationController
     end
     
     def add
-      @notecollections = Notecollection.all
+      @notes = Note.all
     end 
     
     def show
