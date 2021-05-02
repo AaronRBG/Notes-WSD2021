@@ -31,6 +31,7 @@
           <td>
             <button class="btn"><%= link_to 'Destroy Collection', notecollection_path(notecollection, :_id => notecollection._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
             <button class="btn"><%= link_to 'Show Notes', notecollection_path(notecollection, :_id => notecollection._id) %></button>
+            <button class="btn"><%= link_to 'Add note', add_path(notecollection, :_id => notecollection._id) %></button>
             
 
           </td>

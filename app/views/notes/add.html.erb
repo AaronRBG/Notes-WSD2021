@@ -4,35 +4,34 @@
     <table align: center>
   
 <font color="White">
-          <h3 align: center>Select a Collection to add the note</h3>
+          <h3 align: center>Select a Note to add to the Collection</h3>
 </font>
 
 
 
-    <tbody class="users_table">
-    <td>
-      <font color="White" face="Comic Sans MS,arial">
-        <h4>Nombre
-      </font>
-    </td>
-    <td>
-      <font color="White" face="Comic Sans MS,arial">
-        <h4> 
-      </font>
-    </td>
-   
-    <% @notecollections.each do |notecollection| %>
+    <tbody class="notes_table">
+    <% @notes.each do |note| %>
       <tr class="a">
-          <td>
-            <font color="Black" face="Comic Sans MS,arial">
-              <h5><%= notecollection.name %>
-            </font>
-          </td>
-          <td>
-            <button class="btn"><%= link_to 'Add note', addNote_path%></button>
+      
+        <td><h4><%= note.title %></h4>
+    
+        
+          <ul>
+          <li>
+            <%= link_to 'Show', note_path(note, :_id => note._id) %>
+          </li>
+    
+           <li>
+           
+            <!--%= link_to 'Add to the collection', add_notecollection_path(:note => @note._id, :notecollection => @notecollection._id ), method: post %-->
+            <%= link_to 'Add to the collection', add_path(note, :_id => note._id) %>
             
-
-          </td>
+          </li>
+        </ul>
+        
+        
+        </td>
+       
       </tr>
     <% end %>
   </tbody>

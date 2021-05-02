@@ -24,6 +24,9 @@
                   <li>
                      <%= link_to 'Users', users_path %>   
                   </li>
+                   <li> 
+                     <%= link_to 'My Collections', notecollectionsUser_path(:user => session[:user_id]) %>   
+                  </li>
                <% else %>
                <li>
                      <%= link_to 'New Note', new_note_path(:user => session[:user_id]) %>
