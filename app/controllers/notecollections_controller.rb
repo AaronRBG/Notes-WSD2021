@@ -57,8 +57,8 @@ class NotecollectionsController < ApplicationController
 
     def share
       if session[:user_id] != "NONE"
-        if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:notecollection], :user_id => session[:user_id])
-          userCollection = UserCollection.new(:notecollection_id => params[:notecollection], :user_id => params[:user])
+        if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:_id], :user_id => session[:user_id])
+          userCollection = UserCollection.new(:notecollection_id => params[:_id], :user_id => params[:user])
           userCollection.save
         end
         redirect_to notecollectionsUser_path(:user => session[:user_id])
@@ -67,11 +67,7 @@ class NotecollectionsController < ApplicationController
       end
     end
 
-
-
     def getAdd
-  
-
       if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:_id], :user_id => session[:user_id])
         @notecollection = Notecollection.find(params[:_id])
         if session[:type] == "ADMIN"
@@ -103,9 +99,8 @@ class NotecollectionsController < ApplicationController
 
 
     def add
-      
       if session[:user_id] != "NONE"
-        if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:notecollection], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:_id], :user_id => session[:user_id])
           @notecollection = Notecollection.find(params[:_id])
           @notecollection.notes.append(params[:note_id])
           @notecollection.save!
@@ -120,7 +115,7 @@ class NotecollectionsController < ApplicationController
 
     def removeNote
       if session[:user_id] != "NONE"
-        if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:notecollection], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:_id], :user_id => session[:user_id])
           @notecollection = Notecollection.find(params[:_id])
           if @notecollection.notes.include?(params[:note_id])
             @notecollection.notes.delete(params[:note_id])
@@ -200,7 +195,8 @@ class NotecollectionsController < ApplicationController
             if userCollection != "undefined" && userCollection != nil
                 userCollection.delete
             end
-            if session[:type] = notecollections_path
+            if session[:type] == "ADMIN"
+              redirect_to notecollections_path
             else
               redirect_to notecollectionsUser_path(:user => session[:user_id])
             end

@@ -1,48 +1,43 @@
 <div class="default_backround" align="center">
-<table align: center>
-  
-  <thead>
-    <tr>
-      <!--<th>Id</th>-->
-      <th >
-        <font color="White">
-          <h3 align: center>List of users</h3>
-        </font>
-      </th>
-    </tr>
-  </thead>
-
-  
-  <tbody class="users_table">
-    <td>
-      <font color="White" face="Comic Sans MS,arial">
-        <h4>Nombre
-      </font>
-    </td>
-    <td>
-      <font color="White" face="Comic Sans MS,arial">
-        <h4>Opciones
-      </font>
-    </td>
-   
-    <% @users.each do |user| %>
-      <tr class="a">
-          <td>
-            <font color="Black" face="Comic Sans MS,arial">
-              <h5><%= user.name %>
+   <table align: center>
+      <thead>
+         <tr>
+            <th >
+               <font color="White">
+                  <h3 align: center>List of users</h3>
+               </font>
+            </th>
+         </tr>
+      </thead>
+      <tbody class="users_table">
+         <td>
+            <font color="White" face="Comic Sans MS,arial">
+               <h4>
+               Nombre
             </font>
-          </td>
-          <td>
-            <button type="button"> <%= link_to 'Share with this user', share_path(:note => @note._id, :user => user._id), method: :post %></button>
-          </td>
-      </tr>
-    <% end %>
-  </tbody>
-  
-</table>
-<p>
-  <h1><%= link_to 'Back', notesUser_path(:user => session[:user_id]) %></h1>
-</p>
-
+         </td>
+         <td>
+            <font color="White" face="Comic Sans MS,arial">
+               <h4>
+               Opciones
+            </font>
+         </td>
+         <% @users.each do |user| %>
+         <tr class="a">
+            <td>
+               <font color="Black" face="Comic Sans MS,arial">
+                  <h5>
+                  <%= user.name %>
+               </font>
+            </td>
+            <td>
+               <button type="button"> <%= link_to 'Share with this user', share_path(:note => @note._id, :user => user._id), method: :post %></button>
+            </td>
+         </tr>
+         <% end %>
+      </tbody>
+   </table>
+   <p>
+   <h1><%= link_to 'Back', url_for(:back)  %></h1>
+   </p>
 </div>
-

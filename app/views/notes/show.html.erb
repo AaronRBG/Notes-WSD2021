@@ -1,27 +1,17 @@
 <div class="default_backround" align="center">
-<div class = 'box'>
-
-
-<h6>
-  
-  <strong><%= @note.title %></strong>
-</h6>
-<br>
-<p>
-
-  <%= @note.text %>
-</p>
-
-<p>
-
-  <img src= "<%= @note.image %>"  width="100" height="100">
-</p>
-<p>
-  <h1><%= link_to 'Back', notes_path %></h1>
-</p>
-
+   <div class = 'box'>
+      <h6>
+         <strong><%= @note.title %></strong>
+      </h6>
+      <br>
+      <p>
+         <%= @note.text %>
+      </p>
+      <p>
+         <img src= "<%= @note.image %>"  width="100" height="100">
+      </p>
+      <p>
+      <h1><%= link_to 'Back', url_for(:back)  %></h1>
+      </p>
+   </div>
 </div>
-
-
-</div>
-

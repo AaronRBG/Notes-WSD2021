@@ -1,8 +1,8 @@
 <div class="contenido">
-<h3 text-align="center">Editing Note</h3>
-<br>
-<%= render 'form', note: @note %>
-<br>
-<%= link_to 'Back', notes_path %>
+   <h3 text-align="center">Editing Note</h3>
+   <br>
+   <%= render 'form', note: @note %>
+   <br>
+   <%= link_to 'Back', url_for(:back)  %>
 </div>
 <html>

@@ -1,36 +1,31 @@
 <div class="default_backround" align="center">
-<div>
-<h3>
-  <strong><%= @notecollection.name %></strong>
-</h3>
-<% @notecollection.notes.each do |note| %>
+   <div>
+      <h3>
+         <strong><%= @notecollection.name %></strong>
+      </h3>
+      <% @notecollection.notes.each do |noteID| %>
       <tr class="a">
-      
-        <td><h4><%= note.title %></h4>
-    
-        
-          <ul>
-          <li>
-            <%= link_to 'Show', note_path(note, :_id => note._id) %>
-          </li>
-          <li>
-            <%= link_to 'Edit', edit_note_path(note, :_id => note._id) %>
-          </li>
-          <li>
-            <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </li>
-           <li>
-            <%= link_to 'Delete from collection', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </li>
-        </ul>
-        
-        
-        </td>
-       
+         <td>
+            <div style="display: none;">
+               <%= note = Note.find(noteID) %>
+            </div>
+            <h4><%= note.title %></h4>
+            <ul>
+               <li>
+                  <%= link_to 'Show', note_path(note, :_id => note._id) %>
+               </li>
+               <li>
+                  <%= link_to 'Edit', edit_note_path(note, :_id => note._id) %>
+               </li>
+               <li>
+                  <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+               </li>
+               <li>
+                  <%= link_to 'Delete from collection', removeNote_path(@notecollection, :_id => @notecollection._id, :note_id => note._id), method: :post, data: { confirm: 'Are you sure?' } %>
+               </li>
+            </ul>
+         </td>
       </tr>
-    <% end %>
+      <% end %>
+   </div>
 </div>
-
-
-</div>
-
