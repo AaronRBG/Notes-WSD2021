@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<div class="contenido" id="div-index">
+   <table align: center id="table-index">
+   <button class="btn"> <%= link_to 'New Collection', new_notecollection_path %></button>
+   <font color="White">
+      <h3 >List of collections</h3>
+   </font>
+   <tbody class="users_table" id="table-index-" >
+      <td id ="td1-index">
+         <font color="White" face="Comic Sans MS,arial">
+            <h4>
+            Nombre
+         </font>
+      </td>
+      <td id ="td2-index">
+         <font color="White" face="Comic Sans MS,arial">
+            <h4>
+            Opciones
+         </font>
+      </td>
+      <% @notecollections.each do |notecollection| %>
+      <tr class="a" id ="tr1-index">
+         <td id ="td3-index">
+            <font color="Black" face="Comic Sans MS,arial">
+               <h5>
+               <%= notecollection.name %>
+            </font>
+         </td>
+         <td id ="td4-index">
+            <button class="btn" id="btn1-index"><%= link_to 'Destroy Collection', notecollection_path(notecollection, :_id => notecollection._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            <button class="btn" id="btn2-index"><%= link_to 'Show Notes', notecollection_path(notecollection, :_id => notecollection._id) %></button>
+            <button class="btn" id="btn3-index"><%= link_to 'Add note', add_path(notecollection, :_id => notecollection._id) %></button>
+            <button class="btn" id="btn4-index"><%= link_to 'Share', shareCollection_path(notecollection, :_id => notecollection._id)%></button>
+         </td>
+      </tr>
+      <% end %>
+   </tbody>
+</div>

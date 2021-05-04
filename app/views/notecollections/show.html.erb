@@ -1,33 +1,32 @@
-<div class="contenido">
-
-               
-                  
-  <button class="btn"><%= link_to 'New Note', new_note_path(:user => session[:user_id]) %></button>
-                  
-   <table>
-      <thead>
+<div class="default_backround" align="center" id="div-show">
+   
+ <table id= "table-show">
+      <thead id= "table-head-show">
          <tr>
             <th >
-               <h3>List of notes</h3>
+               <h3><%= @notecollection.name %></h3>
             </th>
          </tr>
       </thead>
-      <tbody class="notes_table">
-         <% @notes.each do |note| %>
-         <tr class="a">
-            <td>
+      <tbody class="notes_table" id="table-body-show">
+         <% @notecollection.notes.each do |noteID| %>
+         <tr class="a" id="tr-show">
+            <td id="td-show">
+                <div style="display: none;" id="find-note-id">
+                   <%= note = Note.find(noteID) %>
+                </div>
                <h4><%= note.title %></h4>
                <ul>
-                  <li>
+                  <li id="li1-show">
                      <%= link_to 'Show', note_path(note, :_id => note._id) %>
                   </li>
-                  <li>
+                  <li id="li2-show">
                      <%= link_to 'Edit', edit_note_path(note, :_id => note._id) %>
                   </li>
-                  <li>
+                  <li id="li3-show">
                      <%= link_to 'Share', share_path(note, :_id => note._id)%>
                   </li>
-                  <li>
+                  <li id="li4-show">
                      <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
                   </li>
                </ul>
@@ -36,6 +35,3 @@
          <% end %>
       </tbody>
    </table>
-   <br>
-</div>
-</html>
