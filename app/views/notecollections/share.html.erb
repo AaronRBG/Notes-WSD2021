@@ -1,0 +1,43 @@
+<div class="default_backround" align="center" id="div-share">
+   <table align: center id="table-share">
+      <thead id= "table-head-share">
+         <tr>
+            <th >
+               <font color="White">
+                  <h3 align: center>List of users</h3>
+               </font>
+            </th>
+         </tr>
+      </thead>
+      <tbody class="users_table" id="table-body-share">
+         <td id= "td1-share">
+            <font color="White" face="Comic Sans MS,arial">
+               <h4>
+               Nombre
+            </font>
+         </td>
+         <td id= "td2-share">
+            <font color="White" face="Comic Sans MS,arial">
+               <h4>
+               Opciones
+            </font>
+         </td>
+         <% @users.each do |user| %>
+         <tr class="a" id= "tr1-share">
+            <td id= "td3-share">
+               <font color="Black" face="Comic Sans MS,arial">
+                  <h5>
+                  <%= user.name %>
+               </font>
+            </td>
+            <td id= "td4-share">
+               <button type="button"> <%= link_to 'Share collection with this user', shareCollection_path(:notecollection => @notecollection._id, :user => user._id), method: :post %></button>
+            </td>
+         </tr>
+         <% end %>
+      </tbody>
+   </table>
+   <p id="link-back-share">
+   <h1><%= link_to 'Back', url_for(:back)  %></h1>
+   </p>
+</div>

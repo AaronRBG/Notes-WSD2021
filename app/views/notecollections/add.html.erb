@@ -1,30 +1,30 @@
 <p id="notice"><%= notice %></p>
-<div class="contenido">
-   <table align: center>
+<div class="contenido" id="div-add">
+   <table align: center id="table-add">
    <font color="White">
       <h3 align: center>Select a Note to add to the Collection</h3>
    </font>
-   <tbody class="users_table">
-      <td>
+   <tbody class="users_table" id="table-add-body">
+      <td id="td1-add">
          <font color="White" face="Comic Sans MS,arial">
             <h4>
             Nombre
          </font>
       </td>
-      <td>
+      <td id="td2-add">
          <font color="White" face="Comic Sans MS,arial">
             <h4>
          </font>
       </td>
       <% @notes.each do |note| %>
-      <tr class="a">
+      <tr class="a" id="tr1-add">
          <td>
             <font color="Black" face="Comic Sans MS,arial">
                <h5>
                <%= note.title %>
             </font>
          </td>
-         <td>
+         <td id="tr2-add">
             <button class="btn"><%= link_to 'Add note', add_path(@notecollection, :_id => @notecollection._id, :note_id => note._id), method: :post %></button>
          </td>
       </tr>

@@ -1,4 +1,9 @@
 <div class="contenido">
+
+               
+                  
+  <button class="btn"><%= link_to 'New Note', new_note_path(:user => session[:user_id]) %></button>
+                  
    <table>
       <thead>
          <tr>
@@ -8,16 +13,6 @@
          </tr>
       </thead>
       <tbody class="notes_table">
-         <tr class="a">
-            <td>
-               <h4>Create New Note</h4>
-               <ul>
-                  <li>
-                     <%= link_to 'New Note', new_note_path(:user => session[:user_id]) %>
-                  </li>
-               </ul>
-            </td>
-         </tr>
          <% @notes.each do |note| %>
          <tr class="a">
             <td>

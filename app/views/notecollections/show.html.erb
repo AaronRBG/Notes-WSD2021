@@ -1,31 +1,37 @@
-<div class="default_backround" align="center">
-   <div>
-      <h3>
-         <strong><%= @notecollection.name %></strong>
-      </h3>
-      <% @notecollection.notes.each do |noteID| %>
-      <tr class="a">
-         <td>
-            <div style="display: none;">
-               <%= note = Note.find(noteID) %>
-            </div>
-            <h4><%= note.title %></h4>
-            <ul>
-               <li>
-                  <%= link_to 'Show', note_path(note, :_id => note._id) %>
-               </li>
-               <li>
-                  <%= link_to 'Edit', edit_note_path(note, :_id => note._id) %>
-               </li>
-               <li>
-                  <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
-               </li>
-               <li>
-                  <%= link_to 'Delete from collection', removeNote_path(@notecollection, :_id => @notecollection._id, :note_id => note._id), method: :post, data: { confirm: 'Are you sure?' } %>
-               </li>
-            </ul>
-         </td>
-      </tr>
-      <% end %>
-   </div>
-</div>
+<div class="default_backround" align="center" id="div-show">
+   
+ <table id= "table-show">
+      <thead id= "table-head-show">
+         <tr>
+            <th >
+               <h3><%= @notecollection.name %></h3>
+            </th>
+         </tr>
+      </thead>
+      <tbody class="notes_table" id="table-body-show">
+         <% @notecollection.notes.each do |noteID| %>
+         <tr class="a" id="tr-show">
+            <td id="td-show">
+                <div style="display: none;" id="find-note-id">
+                   <%= note = Note.find(noteID) %>
+                </div>
+               <h4><%= note.title %></h4>
+               <ul>
+                  <li id="li1-show">
+                     <%= link_to 'Show', note_path(note, :_id => note._id) %>
+                  </li>
+                  <li id="li2-show">
+                     <%= link_to 'Edit', edit_note_path(note, :_id => note._id) %>
+                  </li>
+                  <li id="li3-show">
+                     <%= link_to 'Share', share_path(note, :_id => note._id)%>
+                  </li>
+                  <li id="li4-show">
+                     <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </li>
+               </ul>
+            </td>
+         </tr>
+         <% end %>
+      </tbody>
+   </table>
