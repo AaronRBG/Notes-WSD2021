@@ -87,10 +87,7 @@ class UsersController < ApplicationController
   def create
     if session[:type] != "USER"
       @user = User.new(user_params)
-      if @user.save
-        session[:user] = @user.id
-        session[:type] = @user.type
-      end
+      @user.save
       if session[:type] == "ADMIN"
         redirect_to users_path
       else

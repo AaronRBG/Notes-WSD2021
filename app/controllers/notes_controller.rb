@@ -10,10 +10,6 @@ class NotesController < ApplicationController
       end
     end
     
-    def add
-      @notes = Note.all
-    end 
-    
     def show
       if session[:user_id] != "NONE"
         if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])

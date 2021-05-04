@@ -61,7 +61,11 @@ class NotecollectionsController < ApplicationController
           userCollection = UserCollection.new(:notecollection_id => params[:_id], :user_id => params[:user])
           userCollection.save
         end
-        redirect_to notecollectionsUser_path(:user => session[:user_id])
+        if session[:type] == "ADMIN"
+          redirect_to notecollections_path
+        else
+          redirect_to notecollectionsUser_path(:user => session[:user_id])
+        end
       else
         redirect_to login_path
       end
@@ -105,7 +109,11 @@ class NotecollectionsController < ApplicationController
           @notecollection.notes.append(params[:note_id])
           @notecollection.save!
         end
-        redirect_to notecollectionsUser_path(:user => session[:user_id])
+        if session[:type] == "ADMIN"
+          redirect_to notecollections_path
+        else
+          redirect_to notecollectionsUser_path(:user => session[:user_id])
+        end
       else
         redirect_to login_path
       end
@@ -122,7 +130,11 @@ class NotecollectionsController < ApplicationController
             @notecollection.save!
           end
         end
-        redirect_to notecollectionsUser_path(:user => session[:user_id])
+        if session[:type] == "ADMIN"
+          redirect_to notecollections_path
+        else
+          redirect_to notecollectionsUser_path(:user => session[:user_id])
+        end
       else
         redirect_to login_path
       end
