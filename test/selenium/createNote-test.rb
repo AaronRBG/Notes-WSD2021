@@ -25,8 +25,8 @@ class Create_Note_Class < Test::Unit::TestCase
     @driver.find_element(:name, "note[text]").send_keys "Texto de la nota que haremos"
     sleep 0.3
     @driver.find_element(:name, "commit").click
-    sleep 2
-
-    #assert(@driver.find_element(:class => "user-name").text.include?("Admin"),"Assertion Failed")
+    sleep 1
+    assert(@driver.find_element(:xpath => "//table").text.include?("Nueva Nota Selenium"),"Assertion Failed")
+   
   end
 end
