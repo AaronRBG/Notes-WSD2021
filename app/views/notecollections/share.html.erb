@@ -31,7 +31,7 @@
                </font>
             </td>
             <td id= "td4-share">
-               <button type="button"> <%= link_to 'Share collection with this user', shareCollection_path(:notecollection => @notecollection._id, :user => user._id), method: :post %></button>
+               <button type="button"> <%= link_to 'Share collection with this user', shareCollection_path(:_id => @notecollection._id, :user => user._id), method: :post %></button>
             </td>
          </tr>
          <% end %>

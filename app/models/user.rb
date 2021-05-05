@@ -30,4 +30,5 @@ class User
     
     has_one :session
     has_many :userNotes
+    has_many :userCollections
 end
