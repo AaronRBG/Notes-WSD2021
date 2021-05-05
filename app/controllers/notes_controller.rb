@@ -137,8 +137,15 @@ class NotesController < ApplicationController
           noteID = @note._id
           usernote = UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
           if UserNote.where(:note_id => noteID).count == 1
-            @note.destroy
+            @note.delete
             usernote = UserNote.find_by(:note_id => params[:_id])
+            notecollections = Notecollection.where(:notes => params[:_id]).to_a
+            i = 0
+            while i < notecollections.length do
+              notecollections[i].notes.delete(params[:_id])
+              notecollections[i].save!
+              i = i+1
+            end
           end
           if usernote != "undefined"
             usernote.delete
