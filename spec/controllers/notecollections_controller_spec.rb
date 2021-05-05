@@ -77,7 +77,6 @@ RSpec.describe NotecollectionsController, :type => :controller do
         session[:user_id] = "Admin"
         post :share, params: { :notecollection => @notecollection._id,  :user => "Admin"}
         expect(response).to redirect_to notecollectionsUser_path(:user => "Admin")
-        UserCollection.find_by(:notecollection_id => @notecollection._id, :user_id => "Admin").delete
       end
     end
     describe "GET collectionsUser" do

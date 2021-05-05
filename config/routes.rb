@@ -22,6 +22,5 @@ Rails.application.routes.draw do
   post 'removeNote', to: 'notecollections#removeNote'
   get 'notecollectionsUser', to: 'notecollections#notecollectionsUser'
 
-root "sessions#new"  
- 
+root "sessions#new"
 end

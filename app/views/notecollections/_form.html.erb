@@ -1,0 +1,14 @@
+<%= form_with(model: notecollection) do |form| %>
+
+<div class="myForm" style="display: none;" id="form1">  
+   <%= form.label :_id %>
+   <%= form.text_field :_id %>
+</div>
+<div class="myForm" id="form2">
+   <%= form.label :name %>
+   <%= form.text_field :name %>
+</div>
+<div class="myForm" id="form3">
+   <%= form.submit %>
+</div>
+<% end %>
