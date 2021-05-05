@@ -59,7 +59,7 @@ class NotecollectionsController < ApplicationController
       if session[:user_id] != "NONE"
         if session[:type] == "ADMIN" || UserCollection.find_by(:notecollection_id => params[:_id], :user_id => session[:user_id])
           userCollection = UserCollection.new(:notecollection_id => params[:_id], :user_id => params[:user])
-          userCollection.save
+          userCollection.save!
         end
         if session[:type] == "ADMIN"
           redirect_to notecollections_path
