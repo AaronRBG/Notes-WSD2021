@@ -66,13 +66,23 @@ class UsersController < ApplicationController
       @user = User.find(params[:_id])
       # DELETE NOTES ON CASCADE
       usernotes = UserNote.where(:user_id => @user.username).to_a
+      usercollections = UserCollection.where(:user_id => @user.username).to_a
       i = 0
       while i < usernotes.length do
         if UserNote.where(:note_id => usernotes[i].note_id).count == 1
           note = Note.find(usernotes[i].note_id)
-          note.delete
+          note.destroy
         end
         usernotes[i].delete
+        i = i+1
+      end
+      i = 0
+      while i < usercollections.length do
+        if UserCollection.where(:collection_id => usercollections[i].collection_id).count == 1
+          collection = Collection.find(usercollections[i].collection_id)
+          collection.delete
+        end
+        usercollections[i].delete
         i = i+1
       end
       @user.destroy

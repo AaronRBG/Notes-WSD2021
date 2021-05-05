@@ -29,6 +29,9 @@
                   <li id="li4-show">
                      <%= link_to 'Destroy', note_path(note, :_id => note._id), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
                   </li>
+                  <li id="li5-show">
+                     <%= link_to 'Remove Note from Collection', removeNote_path(@notecollection, :_id => @notecollection._id, :note_id => noteID), method: :post, data: { confirm: 'Are you sure?' } %>
+                  </li>
                </ul>
             </td>
          </tr>
