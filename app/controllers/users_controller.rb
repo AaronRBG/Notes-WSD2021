@@ -111,7 +111,9 @@ class UsersController < ApplicationController
   def update
     if session[:type] == "ADMIN"
       aux = User.new(user_params)
-      @user = User.find(params[:_id])
+      a = user_params[:username]
+      @user = User.find(user_params[:username])
+      a = @user
       @user.update(:name => aux.name, :email => aux.email, :password => aux.password)
       redirect_to users_path
     elsif session[:type] == "USER"
