@@ -75,8 +75,8 @@ RSpec.describe NotecollectionsController, :type => :controller do
       it "Shares the collection with the user, if the user has access to this operation" do
         session[:type] = "ADMIN"
         session[:user_id] = "Admin"
-        post :share, params: { :notecollection => @notecollection._id,  :user => "Admin"}
-        expect(response).to redirect_to notecollectionsUser_path(:user => "Admin")
+        post :share, params: { :_id => @notecollection._id,  :user => "Admin"}
+        expect(response).to redirect_to notecollections_path
       end
     end
     describe "GET collectionsUser" do
@@ -132,7 +132,7 @@ RSpec.describe NotecollectionsController, :type => :controller do
         note = Note.create!(title: "titulo2", text: "Texto2")
         note.save!
         post :add, params: { :_id => @notecollection._id, :id => @notecollection._id, :note => note._id }
-        expect(response).to redirect_to notecollectionsUser_path(:user => "Admin")
+        expect(response).to redirect_to notecollections_path
       end
     end
     let(:id) { Note.find_by(:title => "titulo") }
@@ -151,7 +151,7 @@ RSpec.describe NotecollectionsController, :type => :controller do
         note = Note.find_by(:title => "titulo2")
         post :removeNote, params: { :_id => @notecollection._id, :id => @notecollection._id, :note_id => note._id }
         note.delete
-        expect(response).to redirect_to notecollectionsUser_path(:user => "Admin")
+        expect(response).to redirect_to notecollections_path
       end
     end
     describe "POST create" do
