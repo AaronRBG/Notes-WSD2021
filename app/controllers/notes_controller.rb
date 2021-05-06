@@ -115,15 +115,15 @@ class NotesController < ApplicationController
   
     def update
       if session[:user_id] != "NONE"
-        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => params[:_id], :user_id => session[:user_id])
+        if session[:type] == "ADMIN" || UserNote.find_by(:note_id => note_params[:_id], :user_id => session[:user_id])
           aux = Note.new(note_params)
-          @note = Note.find(params[:_id])
+          @note = Note.find(note_params[:_id])
           @note.update(:title => aux.title, :text => aux.text, :image => aux.image)
-          if session[:type] == "ADMIN"
-            redirect_to notes_path
-          else
-            redirect_to notesUser_path(:user => session[:user_id])
-          end
+        end
+        if session[:type] == "ADMIN"
+          redirect_to notes_path
+        else
+          redirect_to notesUser_path(:user => session[:user_id])
         end
       else
         redirect_to login_path
